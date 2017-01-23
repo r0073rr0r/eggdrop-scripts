@@ -1,2 +1,2 @@
 # eggdrop-scripts
-Eggdrop scripts
+Eggdrop scripts coded by me.
