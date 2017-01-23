@@ -1,5 +1,5 @@
 ##############################################################################################
-##  ##        dnsbl.tcl v1.337 for eggdrop by munZe irc.krstarica.com                    ##  ##
+##  ##        PIKbl.tcl v1.337 for eggdrop by munZe irc.krstarica.com                    ##  ##
 ##############################################################################################
 ##############################################################################################
 ##      ____                __                 ###########################################  ##
@@ -61,4 +61,4 @@ namespace eval PIK {
 }
 bind raw - NOTICE PIK::connection
 ## You can comment out the event below if you already have a oper script for this bot.
-bind evnt - init-server PIK::operup 
+bind evnt - init-server PIK::operup
