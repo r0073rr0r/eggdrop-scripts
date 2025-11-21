@@ -1,5 +1,5 @@
 ###############################################################################
-# holdem.tcl version 1.2.0                                                    #
+# holdem.tcl version 1.2.1                                                    #
 # Copyright 2011 Steve Church (rojo on EFnet). All rights reserved.           #
 #                                                                             #
 # Salt the settings below to taste, load the script, rehash, .chanset         #
@@ -178,7 +178,7 @@ set settings(bot-players) { "Ezmirelda McGillicuddy" "Mr. Croup" "Mr.
 #########################
 # end of user variables #
 #########################
-set scriptver "1.2.0"
+set scriptver "1.2.1"
 set settings(verbose) 1 ;# enable additional putlogs for development
 variable settings
 variable hands
@@ -282,6 +282,7 @@ proc render {card} {
 		# ♥ \u2665 ♦ \u2666 ♠ \u2660 ♣ \u2663
 		array set suits [list H \u2665 D \u2666 S \u2660 C \u2663]
 		append out $suits([lindex $card 1])
+		append out " "
 		append out [string map {14 A 13 K 12 Q 11 J} [lindex $card 0]]
 		if {![string equal [encoding system] utf-8]} {
 			set out [encoding convertto utf-8 $out]
@@ -824,7 +825,7 @@ proc deal {chan} {
 		} else {
 			set msg_type [get_user_card_message_type $p]
 			if {$settings(verbose)} { putlog "Sending cards [string toupper $msg_type] to $p: $card_msg" }
-			putserv "[string toupper $msg_type] $p :$card_msg"
+			puthelp "[string toupper $msg_type] $p :$card_msg"
 		}
 	}
 	dict set settings($chan) deck $deck
@@ -1009,7 +1010,9 @@ proc peek {hand idx txt} {
 	variable settings
 	variable hand_name
 	foreach chan [array names settings] {
-		if {![string match \#* $chan]} { 			continue 		}
+		if {![string match \#* $chan]} {
+			continue
+		}
 		set deck [dict get $settings($chan) deck]
 		set phase [dict get $settings($chan) phase]
 		foreach p [dict get $settings($chan) players_this_round] {
@@ -1460,7 +1463,7 @@ proc take_bet {nick uhost hand chan txt} {
 		}
 		set msg_type [get_user_card_message_type $nick]
 		if {$settings(verbose)} { putlog "Sending cards [string toupper $msg_type] to $nick: $card_msg" }
-		putserv "[string toupper $msg_type] $nick :$card_msg"
+		puthelp "[string toupper $msg_type] $nick :$card_msg"
 		bind pubm * $chan* ${ns_name}::take_bet
 		return 0
 	} elseif {[regexp -nocase {^\yall[\s-]*in\y|\yall\y$} $txt]} {
@@ -1566,7 +1569,8 @@ proc take_bet {nick uhost hand chan txt} {
 			puthelp $out
 			dict set settings($chan) !$p cash $cash
 			dict set settings($chan) phase score
-			return [start_next_phase $chan]
+			utimer 1 [list ${ns}::start_next_phase $chan]
+			return 0
 		}
 		puthelp $out
 	} else {
@@ -1938,7 +1942,7 @@ proc score {chan} {
 	} else {
 		puthelp $out
 		dict set settings($chan) folds 0
-		start_next_phase $chan
+		utimer 1 [list ${ns}::start_next_phase $chan]
 	}
 }
 proc straight_flush {lst} {
@@ -2630,7 +2634,7 @@ proc show_rankings {nick uhost hand chan txt} {
 	# Get top 10 (only from non-negative points)
 	set top10 [lrange $sorted 0 9]
 	if {[llength $top10] == 0} {
-		putserv "NOTICE $nick :No rankings yet. Play some games to earn points!"
+		puthelp "NOTICE $nick :No rankings yet. Play some games to earn points!"
 		return
 	}
 	# Determine if we should use channel or notice (use notice by default, channel if requested)
@@ -2641,7 +2645,7 @@ proc show_rankings {nick uhost hand chan txt} {
 	if {$use_channel} {
 		puthelp "PRIVMSG $chan :\00304\002Top 10 Hold 'Em Rankings:\002\003"
 	} else {
-		putserv "NOTICE $nick :\00304\002Top 10 Hold 'Em Rankings:\002\003"
+		puthelp "NOTICE $nick :\00304\002Top 10 Hold 'Em Rankings:\002\003"
 	}
 	set rank 1
 	foreach entry $top10 {
@@ -2658,7 +2662,7 @@ proc show_rankings {nick uhost hand chan txt} {
 		if {$use_channel} {
 			puthelp "PRIVMSG $chan :$output"
 		} else {
-			putserv "NOTICE $nick :$output"
+			puthelp "NOTICE $nick :$output"
 		}
 		incr rank
 	}
@@ -2687,7 +2691,7 @@ proc show_rankings {nick uhost hand chan txt} {
 		if {$use_channel} {
 			puthelp "PRIVMSG $chan :$user_output"
 		} else {
-			putserv "NOTICE $nick :$user_output"
+			puthelp "NOTICE $nick :$user_output"
 		}
 	} elseif {[info exists rankings($nick)]} {
 		set user_games [dict get $rankings($nick) games_played]
@@ -2702,11 +2706,11 @@ proc show_rankings {nick uhost hand chan txt} {
 		if {$use_channel} {
 			puthelp "PRIVMSG $chan :$user_output"
 		} else {
-			putserv "NOTICE $nick :$user_output"
+			puthelp "NOTICE $nick :$user_output"
 		}
 	}
 	if {!$use_channel} {
-		putserv "NOTICE $nick :Use \002!rankings channel\002 to display in channel."
+		puthelp "NOTICE $nick :Use \002!rankings channel\002 to display in channel."
 	}
 }
 
@@ -2771,7 +2775,7 @@ proc show_rank {nick uhost hand chan txt} {
 		set output "You are not ranked yet. Play some games to earn points!"
 	}
 	
-	putserv "NOTICE $nick :$output"
+	puthelp "NOTICE $nick :$output"
 	return 0
 }
 
@@ -2806,30 +2810,30 @@ proc show_help {nick uhost hand chan txt} {
 	set help_msg "\00304\002Hold 'Em Poker Commands:\002\003"
 	
 	# Send user commands
-	putserv "NOTICE $nick :$help_msg"
-	putserv "NOTICE $nick :\00303\002User Commands:\002\003"
-	putserv "NOTICE $nick :  \002!holdem\002, \002!th\002, \002!texas\002, \002!texasholdem\002, \002!the\002 - Start a new game"
-	putserv "NOTICE $nick :  \002!join\002 - Join a game in progress"
-	putserv "NOTICE $nick :  \002!play\002 - Start the game with current players"
-	putserv "NOTICE $nick :  \002!rankings\002 - Show top 10 rankings (use 'channel' to display in channel)"
-	putserv "NOTICE $nick :  \002!rank\002 - Show your personal ranking"
-	putserv "NOTICE $nick :  \002!cardmsg\002 <notice|privmsg> - Set how you receive card messages (default: notice)"
-	putserv "NOTICE $nick :  \002!help\002 - Show this help message"
-	putserv "NOTICE $nick :  \002!stop\002, \002!end\002, \002!endgame\002, \002!stfu\002, \002!quiet\002 - Stop current game (channel operator or game starter only)"
+	puthelp "NOTICE $nick :$help_msg"
+	puthelp "NOTICE $nick :\00303\002User Commands:\002\003"
+	puthelp "NOTICE $nick :  \002!holdem\002, \002!th\002, \002!texas\002, \002!texasholdem\002, \002!the\002 - Start a new game"
+	puthelp "NOTICE $nick :  \002!join\002 - Join a game in progress"
+	puthelp "NOTICE $nick :  \002!play\002 - Start the game with current players"
+	puthelp "NOTICE $nick :  \002!rankings\002 - Show top 10 rankings (use 'channel' to display in channel)"
+	puthelp "NOTICE $nick :  \002!rank\002 - Show your personal ranking"
+	puthelp "NOTICE $nick :  \002!cardmsg\002 <notice|privmsg> - Set how you receive card messages (default: notice)"
+	puthelp "NOTICE $nick :  \002!help\002 - Show this help message"
+	puthelp "NOTICE $nick :  \002!stop\002, \002!end\002, \002!endgame\002, \002!stfu\002, \002!quiet\002 - Stop current game (channel operator or game starter only)"
 	
 	# Send operator commands if user is operator
 	if {$is_op} {
-		putserv "NOTICE $nick :\00305\002Operator Commands:\002\003"
-		putserv "NOTICE $nick :  \002!clearrankings\002 - Clear all rankings (channel operator only)"
+		puthelp "NOTICE $nick :\00305\002Operator Commands:\002\003"
+		puthelp "NOTICE $nick :  \002!clearrankings\002 - Clear all rankings (channel operator only)"
 	}
 	
-	putserv "NOTICE $nick :\00302\002Game Commands (during play):\002\003"
-	putserv "NOTICE $nick :  \002call\002 - Match the current bet"
-	putserv "NOTICE $nick :  \002check\002 - Pass when no bet is required"
-	putserv "NOTICE $nick :  \002raise\002 <amount> - Raise the bet by specified amount"
-	putserv "NOTICE $nick :  \002all-in\002, \002all in\002, or \002all\002 - Go all-in (bet all your chips)"
-	putserv "NOTICE $nick :  \002fold\002 - Fold your hand"
-	putserv "NOTICE $nick :  \002cards\002 - Show your cards again"
+	puthelp "NOTICE $nick :\00302\002Game Commands (during play):\002\003"
+	puthelp "NOTICE $nick :  \002call\002 - Match the current bet"
+	puthelp "NOTICE $nick :  \002check\002 - Pass when no bet is required"
+	puthelp "NOTICE $nick :  \002raise\002 <amount> - Raise the bet by specified amount"
+	puthelp "NOTICE $nick :  \002all-in\002, \002all in\002, or \002all\002 - Go all-in (bet all your chips)"
+	puthelp "NOTICE $nick :  \002fold\002 - Fold your hand"
+	puthelp "NOTICE $nick :  \002cards\002 - Show your cards again"
 	
 	return 0
 }
@@ -2875,13 +2879,13 @@ proc set_card_message_type {nick uhost hand chan txt} {
 	# Validate input
 	if {[string equal $msg_type "notice"] || [string equal $msg_type "privmsg"]} {
 		set user_card_prefs($nick) $msg_type
-		putserv "NOTICE $nick :Card message type set to \002[string toupper $msg_type]\002. Your cards will be sent via $msg_type."
+		puthelp "NOTICE $nick :Card message type set to \002[string toupper $msg_type]\002. Your cards will be sent via $msg_type."
 	} elseif {[string equal $msg_type ""]} {
 		# Show current setting
 		set current [get_user_card_message_type $nick]
-		putserv "NOTICE $nick :Your current card message type is \002[string toupper $current]\002. Use \002!cardmsg notice\002 or \002!cardmsg privmsg\002 to change it."
+		puthelp "NOTICE $nick :Your current card message type is \002[string toupper $current]\002. Use \002!cardmsg notice\002 or \002!cardmsg privmsg\002 to change it."
 	} else {
-		putserv "NOTICE $nick :Invalid option. Use \002!cardmsg notice\002 or \002!cardmsg privmsg\002. Current setting: \002[string toupper [get_user_card_message_type $nick]]\002"
+		puthelp "NOTICE $nick :Invalid option. Use \002!cardmsg notice\002 or \002!cardmsg privmsg\002. Current setting: \002[string toupper [get_user_card_message_type $nick]]\002"
 	}
 	
 	return 0
