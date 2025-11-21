@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 IRC Support
+    url: irc://irc.dbase.in.rs
+    about: Get help on IRC (DBase Network)
+  - name: 📚 Documentation
+    url: https://github.com/r0073rr0r/eggdrop-scripts#readme
+    about: Check the README for documentation

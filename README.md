@@ -13,6 +13,8 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
   - [⚠️ Zastarele Skripte](#️-zastarele-skripte)
 - [📦 Zavisnosti](#-zavisnosti)
 - [📝 Napomene](#-napomene)
+- [🤝 Contributing](#-contributing)
+- [🔒 Security](#-security)
 
 ---
 
@@ -338,9 +340,27 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ---
 
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to contribute to this project.
+
+- 🐛 [Report a Bug](https://github.com/r0073rr0r/eggdrop-scripts/issues/new?template=bug_report.md)
+- 💡 [Request a Feature](https://github.com/r0073rr0r/eggdrop-scripts/issues/new?template=feature_request.md)
+- ❓ [Ask a Question](https://github.com/r0073rr0r/eggdrop-scripts/issues/new?template=question.md)
+
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
+
+---
+
+## 🔒 Security
+
+If you discover a security vulnerability, please **DO NOT** open a public issue. Instead, please see our [Security Policy](SECURITY.md) for details on how to report it privately.
+
+---
+
 ## 📄 Licenca
 
-Većina skripti je pod MIT licencom. Proverite header svake skripte za specifične licence.
+Većina skripti je pod MIT licencom. Proverite [LICENSE](LICENSE) fajl za detalje. Proverite header svake skripte za specifične licence.
 
 ---
 
