@@ -1,12 +1,11 @@
 # Eggdrop Scripts Repository
 
-Repozitorijum sa kolekcijom TCL i Python skripti za Eggdrop IRC bota. Skripte su razvijene za DBase Network (irc.dbase.in.rs) i pokrivaju različite funkcionalnosti od zabave do administracije.
+Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijene za DBase Network (irc.dbase.in.rs) i pokrivaju različite funkcionalnosti od zabave do administracije.
 
 ## 📋 Sadržaj
 
 - [TCL Skripte](#tcl-skripte)
-- [Python Skripte](#python-skripte)
-- [Outdated Skripte](#outdated-skripte)
+- [Zavisnosti](#zavisnosti)
 
 ---
 
@@ -136,7 +135,7 @@ Repozitorijum sa kolekcijom TCL i Python skripti za Eggdrop IRC bota. Skripte su
 
 **Funkcionalnosti:**
 - HTTPS/TLS podrška
-- Gzip dekompresija (opciono, zahteva Trf paket)
+- Gzip dekompresija (zahteva Trf paket - vidi sekciju Zavisnosti)
 - Automatsko ažuriranje na konfigurisanim intervalima
 - Debug logging na #services kanal
 - Custom output formatiranje
@@ -144,7 +143,7 @@ Repozitorijum sa kolekcijom TCL i Python skripti za Eggdrop IRC bota. Skripte su
 
 **Konfiguracija:**
 - Feedovi se konfigurišu direktno u skripti (rss() array)
-- Baza podataka: `scripts/feeds/` (kreira se automatski)
+- Baza podataka: `feeds/` (kreira se automatski)
 - Debug logging: kontrolisano preko "debug" settinga
 
 ---
@@ -166,42 +165,6 @@ Repozitorijum sa kolekcijom TCL i Python skripti za Eggdrop IRC bota. Skripte su
 **Konfiguracija:**
 - `set authorized_users` - Lista autorizovanih korisnika
 - `set use_action 1` - Koristi ACTION format (1) ili PRIVMSG (0)
-
----
-
-### userinfo.tcl
-**Verzija:** 1.08  
-**Autor:** Scott G. Taylor (ButchBub), različiti kontributori  
-**Opis:** Proširenje whois komande sa dodatnim poljima za korisničke informacije. Omogućava korisnicima da čuvaju URL, IRL ime, email, telefon, ICQ, YouTube, Twitch, itd.
-
-**Komande:**
-- `/MSG botnick <polje> <vrednost>` - Postavi informaciju preko MSG
-- `.<polje> <vrednost>` - Postavi informaciju preko DCC
-- `.ch<polje> <who> [<vrednost>|NONE]` - Promeni tuđu informaciju (master flag)
-
-**Dostupna polja:** URL, BF, GF, IRL, EMAIL, DOB, PHONE, ICQ, YOUTUBE, TWITCH
-
-**Funkcionalnosti:**
-- Automatsko dodavanje polja u whois output
-- Podrška za MSG i DCC komande
-- Master komande za administraciju
-
----
-
-### errorlog.tcl
-**Verzija:** 1.0.0  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Skripta za logovanje svih grešaka na #services kanal i u fajl. Automatski detektuje TCL greške i šalje ih na kanal.
-
-**Funkcionalnosti:**
-- Automatsko logovanje grešaka u fajl (`logs/error.log`)
-- Slanje grešaka na IRC kanal (#services)
-- Detekcija različitih tipova grešaka
-- Timestamp za svaku grešku
-
-**Konfiguracija:**
-- `set errorlog_channel "#services"` - Kanal za greške
-- `set errorlog_file "logs/error.log"` - Fajl za logovanje
 
 ---
 
@@ -238,9 +201,9 @@ Repozitorijum sa kolekcijom TCL i Python skripti za Eggdrop IRC bota. Skripte su
 
 ---
 
-### tennis.tcl
+### tenis.tcl
 **Verzija:** 0.1337  
-**Autor:** munZe  
+**Autor:** Velimir Majstorov (munZe)  
 **Opis:** Skripta za dohvatanje ATP tenis rangiranja sa atpworldtour.com. Prikazuje top 3 igrača sa detaljnim informacijama.
 
 **Komande:**
@@ -253,85 +216,74 @@ Repozitorijum sa kolekcijom TCL i Python skripti za Eggdrop IRC bota. Skripte su
 
 ---
 
-## Python Skripte
-
-### imdb.py
-**Opis:** Primer korišćenja Python modula sa Eggdrop botom. Koristi `imdb` biblioteku za pretragu filmova.
-
-**Komande:**
-- `!movie <naziv filma>` - Pretraži film na IMDb
-
-**Zavisnosti:**
-- `imdb` Python paket (Cinemagoer)
-- Eggdrop Python modul
-
----
-
-### urlTitle.py
-**Opis:** Primer korišćenja BeautifulSoup za ekstrakciju naslova sa web stranica.
+### vremenska-prognoza.tcl
+**Verzija:** 1.0.0  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Skripta za dohvatanje vremenske prognoze za gradove u Srbiji sa sajta blic.rs. Prikazuje trenutne vremenske uslove sa detaljnim informacijama.
 
 **Komande:**
-- `!title <URL>` - Prikaži naslov web stranice
+- `!vreme <grad>` - Prikaži vremensku prognozu za odabrani grad
 
-**Zavisnosti:**
-- `beautifulsoup4` Python paket
-- `requests` Python paket
-- Eggdrop Python modul
-
----
-
-### greet.py
-**Opis:** Primer join event bindova u Pythonu. Pozdravlja korisnike kada se pridruže kanalu.
+**Dostupni gradovi:** Beograd, Pristina, Crni-Vrh, Kikinda, Negotin, Sjenica, Valjevo, Krusevac, Pancevo, Kragujevac, Novi-Sad, Kopaonik, Dimitrovgrad, Kraljevo, Palic, Smederevo, Zrenjanin, Vrsac, Cacak, Subotica, Nis, Vranje, Loznica, Leskova, Ruma, Sremska-Mitrovica, Zlatibor, Knjazevac, Uzice
 
 **Funkcionalnosti:**
-- Pozdrav za sve korisnike
-- Poseban pozdrav za operatore
-- Automatsko čišćenje bindova pri rehashu
+- Parsiranje HTML sajta
+- Prikaz trenutnih vremenskih uslova (temperatura, pritisak, vetar, vlažnost, vidljivost, UV index)
+- UTF-8 encoding podrška
 
 ---
 
-### bestfriend.py
-**Opis:** Primer konverzije TCL liste u Python listu. Biramo random "best friend" sa kanala.
+### vrijeme.tcl
+**Verzija:** 1.0.0  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Skripta za dohvatanje vremenske prognoze za gradove u Bosni i Hercegovini sa sajta prognozavremena.info. Prikazuje trenutne vremenske uslove sa detaljnim informacijama.
 
 **Komande:**
-- `!friend` - Izaberi random "best friend" sa kanala
+- `!vrijeme <grad>` - Prikaži vremensku prognozu za odabrani grad
+
+**Dostupni gradovi:** Banja Luka, Bihac, Bijeljina, Brcko, Jahorina, Mostar, Neum, Sarajevo, Trebinje, Tuzla, Visegrad
 
 **Funkcionalnosti:**
-- Demonstracija `parse_tcl_list()` funkcije
-- Rad sa korisnicima na kanalu
+- Parsiranje HTML sajta
+- Prikaz trenutnih vremenskih uslova (temperatura, pritisak, brzina vetra, vlažnost, vidljivost, subjektivno, naleti vetra, izlazak/zalazak sunca)
+- UTF-8 encoding podrška
 
 ---
 
-### listtls.py
-**Opis:** Primer konverzije TCL dict-a u Python dict. Lista TLS statusa socketova.
-
-**Komande:**
-- `!listtls` - Prikaži TLS status svih socketova
+### PIKbl.tcl
+**Verzija:** 1.337  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Skripta za automatsko proveravanje IP adresa korisnika koji se povezuju na IRC server. Proverava IP adrese preko pricaonica.krstarica.com servisa i automatski banuje problematične IP adrese.
 
 **Funkcionalnosti:**
-- Demonstracija `parse_tcl_dict()` funkcije
-- Rad sa socket listom
+- Automatsko hvatanje novih konekcija
+- Provera IP adresa preko eksternog servisa
+- Automatsko banovanje problematičnih IP adresa (GLINE/ZLINE)
+- Obaveštenja na konfigurisanom kanalu
+- Oper up na serveru za izvršavanje banova
+
+**Konfiguracija:**
+- `set BanAkoJeVeceOd` - Threshold za banovanje (default: 60.6)
+- `set KanalZaObavestenja` - Kanal za obaveštenja (default: #services)
+- `set bantype` - Tip bana (GLINE/ZLINE)
+- `set bantime` - Trajanje bana (npr. "12h")
+- `set opernick` / `set operpass` - Oper credentials za banovanje
 
 ---
 
-## Outdated Skripte
+## Zavisnosti
 
-⚠️ **NAPOMENA:** Sledeće skripte trenutno ne rade, ali su u planu da se isprave:
+### trf2.1.5.tar.gz
+**Opis:** Trf (Trf Extension) je TCL ekstenzija koja je potrebna za `rss-synd.tcl` skriptu. Originalna Trf ekstenzija je zastarela i ne radi sa novijim verzijama TCL-a (TCL 8.6+). 
 
-### tennis.tcl
-**Status:** Outdated - ne radi trenutno  
-**Razlog:** Verovatno promene na ATP sajtu ili HTTP strukture  
-**Plan:** Ispravka parsiranja i ažuriranje za novu strukturu sajta
+**Status:** Modifikovana verzija uključena u repozitorijum je prilagođena da radi sa TCL 8.6. Modifikacije su urađene od strane autora (munZe) kako bi skripta `rss-synd.tcl` mogla da koristi gzip dekompresiju za RSS feedove koji su kompresovani.
 
-### vremenska prognoza
-**Status:** Outdated - ne radi trenutno  
-**Razlog:** Skripta nije pronađena u repozitorijumu, verovatno obrisana ili nedostaje  
-**Plan:** Rekreacija skripte za dohvatanje vremenske prognoze
+**Instalacija:**
+1. Raspakujte `trf2.1.5.tar.gz` arhivu
+2. Kompajlirajte i instalirajte Trf ekstenziju prema uputstvima u paketu
+3. Uverite se da je Trf ekstenzija dostupna u TCL okruženju pre pokretanja `rss-synd.tcl`
 
-### vrijeme
-**Status:** Outdated - ne radi trenutno  
-**Razlog:** Skripta nije pronađena u repozitorijumu, verovatno obrisana ili nedostaje  
-**Plan:** Rekreacija skripte za dohvatanje trenutnog vremena/vremenske prognoze
+**Napomena:** Bez Trf ekstenzije, `rss-synd.tcl` će raditi, ali neće moći da dekompresuje gzip kompresovane RSS feedove.
 
 ---
 
@@ -339,8 +291,8 @@ Repozitorijum sa kolekcijom TCL i Python skripti za Eggdrop IRC bota. Skripte su
 
 - Većina skripti je razvijena za Eggdrop 1.10.0+
 - TCL skripte zahtevaju standardne TCL pakete (http, tls)
-- Python skripte zahtevaju Eggdrop Python modul
-- Neke skripte imaju specifične zahteve (npr. Trf paket za gzip)
+- `rss-synd.tcl` zahteva Trf ekstenziju za gzip dekompresiju (vidi sekciju Zavisnosti)
+- Sve skripte su testirane i optimizovane za TCL 8.6
 
 ## 📄 Licenca
 
