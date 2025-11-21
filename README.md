@@ -220,28 +220,6 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ---
 
-## 🛡️ PIKbl.tcl
-
-**Verzija:** 1.337  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Skripta za automatsko proveravanje IP adresa korisnika koji se povezuju na IRC server. Proverava IP adrese preko pricaonica.krstarica.com servisa i automatski banuje problematične IP adrese.
-
-**Funkcionalnosti:**
-- Automatsko hvatanje novih konekcija
-- Provera IP adresa preko eksternog servisa
-- Automatsko banovanje problematičnih IP adresa (GLINE/ZLINE)
-- Obaveštenja na konfigurisanom kanalu
-- Oper up na serveru za izvršavanje banova
-
-**Konfiguracija:**
-- `set BanAkoJeVeceOd` - Threshold za banovanje (default: 60.6)
-- `set KanalZaObavestenja` - Kanal za obaveštenja (default: #services)
-- `set bantype` - Tip bana (GLINE/ZLINE)
-- `set bantime` - Trajanje bana (npr. "12h")
-- `set opernick` / `set operpass` - Oper credentials za banovanje
-
----
-
 ### ⚠️ Zastarele Skripte
 
 ⚠️ **NAPOMENA:** Sledeće skripte su zastarele i trenutno ne rade. Mogu biti ispravljene u budućnosti.
@@ -306,6 +284,31 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 - UTF-8 encoding podrška
 
 **Razlog zastarelosti:** Verovatno promene na prognozavremena.info sajtu ili HTTP strukture. Plan: Rekreacija skripte za dohvatanje vremenske prognoze.
+
+---
+
+## 🛡️ PIKbl.tcl
+
+**Status:** ⚠️ **ZASTARELO** - Ne radi trenutno  
+**Verzija:** 1.337  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Skripta za automatsko proveravanje IP adresa korisnika koji se povezuju na IRC server. Proverava IP adrese preko pricaonica.krstarica.com servisa i automatski banuje problematične IP adrese.
+
+**Funkcionalnosti:**
+- Automatsko hvatanje novih konekcija
+- Provera IP adresa preko eksternog servisa
+- Automatsko banovanje problematičnih IP adresa (GLINE/ZLINE)
+- Obaveštenja na konfigurisanom kanalu
+- Oper up na serveru za izvršavanje banova
+
+**Konfiguracija:**
+- `set BanAkoJeVeceOd` - Threshold za banovanje (default: 60.6)
+- `set KanalZaObavestenja` - Kanal za obaveštenja (default: #services)
+- `set bantype` - Tip bana (GLINE/ZLINE)
+- `set bantime` - Trajanje bana (npr. "12h")
+- `set opernick` / `set operpass` - Oper credentials za banovanje
+
+**Razlog zastarelosti:** Verovatno promene na pricaonica.krstarica.com servisu ili HTTP strukture. Plan: Ažuriranje skripte za novu strukturu servisa ili pronalaženje alternativnog servisa za proveru IP adresa.
 
 ---
 
