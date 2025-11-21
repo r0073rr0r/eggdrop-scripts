@@ -1,2 +1,357 @@
-# eggdrop-scripts
-Eggdrop scripts coded by me.
+# Eggdrop Scripts Repository
+
+Repozitorijum sa kolekcijom TCL i Python skripti za Eggdrop IRC bota. Skripte su razvijene za DBase Network (irc.dbase.in.rs) i pokrivaju različite funkcionalnosti od zabave do administracije.
+
+## 📋 Sadržaj
+
+- [TCL Skripte](#tcl-skripte)
+- [Python Skripte](#python-skripte)
+- [Outdated Skripte](#outdated-skripte)
+
+---
+
+## TCL Skripte
+
+### holdem.tcl
+**Verzija:** 1.2.0  
+**Autor:** Steve Church (rojo), modifikovao Velimir Majstorov (munZe)  
+**Opis:** Kompletan Texas Hold'em poker sistem za IRC kanale. Podržava više igrača, bot igrače, sistem rangiranja, i kompletnu logiku pokera sa blindovima, betting rundama, i automatskim izračunavanjem pobednika.
+
+**Komande:**
+- `!holdem`, `!th`, `!texas`, `!texasholdem`, `!the` - Pokreni novu igru
+- `!join` - Pridruži se igri u toku
+- `!play` - Pokreni igru sa trenutnim igračima
+- `!rankings` - Prikaži top 10 rangiranje (dodaj 'channel' za prikaz na kanalu)
+- `!rank` - Prikaži svoje lično rangiranje
+- `!cardmsg <notice|privmsg>` - Podesi kako primaš poruke sa kartama
+- `!help` - Prikaži sve dostupne komande
+- `!stop`, `!end`, `!endgame`, `!stfu`, `!quiet` - Zaustavi trenutnu igru (samo operatori ili pokretač igre)
+- `!clearrankings` - Obriši sva rangiranja (samo operatori kanala)
+
+**Konfiguracija:**
+- `.chanset #channel +holdem` - Omogući skriptu na kanalu
+- Podesive opcije: buy-in, blindovi, timeout, bot igrači, itd.
+
+**Funkcionalnosti:**
+- Sistem rangiranja sa automatskim resetovanjem svakog meseca
+- Per-user preferencije za tip poruka sa kartama (NOTICE/PRIVMSG)
+- Podrška za UTF-8 Unicode karaktere za karte
+- AI bot igrači sa konfigurabilnom agresivnošću
+- Statistike: igre odigrane, ruke osvojene, ukupni poeni
+
+---
+
+### horoskop.tcl
+**Verzija:** 3.1337  
+**Autor:** tik-tak (original), modifikovao munZe  
+**Opis:** Skripta za dohvatanje horoskopa sa sajta astrolook.com. Podržava dnevne, nedeljne, mesečne, ljubavne, godišnje horoskope i srećne dane.
+
+**Komande:**
+- `!horoskop <znak>` ili `!dnevni <znak>` - Dnevni horoskop
+- `!nedeljni <znak>` - Nedeljni horoskop
+- `!mesecni <znak>` - Mesečni horoskop
+- `!ljubavni <znak>` - Ljubavni horoskop
+- `!godisnji <znak>` - Godišnji horoskop
+- `!srecni <znak>` ili `!srecni-dani <znak>` - Srećni dani
+
+**Dostupni znakovi:** ovan, bik, blizanci, rak, lav, devica, vaga, skorpija/skorpion, strelac, jarac, vodolija, ribe
+
+**Funkcionalnosti:**
+- Flood protection sa dnevnim limitima
+- Kesiranje na dnevnom nivou za brže učitavanje
+- Podrška za HTTPS/TLS
+- Privatne komande (MSG botu)
+- Konfigurabilni način slanja (kanal/PRIVMSG/NOTICE)
+
+**Konfiguracija:**
+- `set saljina 1` - Slanje na kanal
+- `set saljina 2` - Slanje na PRIVMSG (default)
+- `set saljina 3` - Slanje na NOTICE
+
+---
+
+### cpu.tcl
+**Verzija:** 1.0.0  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Monitoring sistema za praćenje CPU opterećenja i memorije. Automatski upozorava kada load average pređe konfigurisani threshold.
+
+**Komande:**
+- `!cpu` - Prikaži CPU load average (1min, 5min, 15min)
+- `!mem` - Prikaži informacije o memoriji (free, available, used, total)
+- `!timerz` - Lista svih aktivnih timera u botu
+
+**Funkcionalnosti:**
+- Automatsko periodično proveravanje CPU opterećenja
+- Upozorenja na kanalu kada threshold bude prekoračen
+- Ograničenje komandi na određeni kanal (#services)
+- Autorizacija: admin nicks (munZe) ili master flag/operatori
+
+**Konfiguracija:**
+- `set cpu_monitor_channel "#services"` - Kanal za monitoring
+- `set cpu_check_interval 300` - Interval provere (sekunde)
+- `set cpu_threshold 5.0` - Threshold za upozorenja
+
+---
+
+### prcko.tcl
+**Verzija:** 1.337  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Zabavne komande za IRC kanale sa različitim procenama i porukama. Uključuje flood protection.
+
+**Komande:**
+- `!prc <nick>` - Random "prc" poruka
+- `!drka <nick>` - Random "drka" poruka
+- `!izmeri <nick>` - Random veličina penisa (10-25 cm)
+- `!sise <nick>` - Random veličina grudi
+- `!sexy <nick>` - Random sexy procenat (0-100%)
+- `!gay <nick>` - Random gay procenat (0-100%)
+- `!hacker <nick>` - Random hacker procenat (0-100%)
+- `!laze <nick>` - Random procenat laži (0-100%)
+- `!istina <nick>` - Random procenat istine (0-100%)
+- `!ozbiljan <nick>` / `!ozbiljna <nick>` - Random procenat ozbiljnosti
+- `!neozbiljan <nick>` / `!neozbiljna <nick>` - Random procenat neozbiljnosti
+- `!crnac <nick>` - Random procenat
+- `!veverica <nick>` - Random procenat
+- `!govedo <nick>` - Random procenat
+- `!dupe <nick>` ili `!guza <nick>` - Random "dupe" poruka
+- `!komande` - Lista svih dostupnih komandi
+- `!iamon` - Lista kanala na kojima je bot (zahteva +n flag)
+- `!ignore <nick>` - Dodaj korisnika na ignore listu (zahteva +m flag)
+
+**Funkcionalnosti:**
+- Flood protection sa automatskim banovanjem
+- Lista izuzetih nickova sa posebnim odgovorima
+- Interaktivni odgovori na određene fraze u kanalu
+
+---
+
+### rss-synd.tcl
+**Verzija:** 0.5.2  
+**Autor:** Andrew Scott, HM2K, modifikovao Velimir Majstorov (munZe)  
+**Opis:** Asinhroni RSS i Atom feed reader sa podrškom za više feedova, gzip kompresiju, automatsko slanje na kanale, i custom triggere.
+
+**Komande:**
+- `!vesti` ili `!rss vesti` - Prikaži najnovije vesti (do 10 stavki)
+- `!rss` - Lista svih dostupnih feedova
+
+**Funkcionalnosti:**
+- HTTPS/TLS podrška
+- Gzip dekompresija (opciono, zahteva Trf paket)
+- Automatsko ažuriranje na konfigurisanim intervalima
+- Debug logging na #services kanal
+- Custom output formatiranje
+- Baza podataka za praćenje novih stavki
+
+**Konfiguracija:**
+- Feedovi se konfigurišu direktno u skripti (rss() array)
+- Baza podataka: `scripts/feeds/` (kreira se automatski)
+- Debug logging: kontrolisano preko "debug" settinga
+
+---
+
+### massslap.tcl
+**Verzija:** 1.0.0  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Komanda za slanje masovnih slap poruka svim korisnicima na kanalu. Podržava ACTION (/me) i PRIVMSG format.
+
+**Komande:**
+- `.call [opciona poruka]` - Pošalji mass slap svim korisnicima na kanalu
+
+**Funkcionalnosti:**
+- Dual autorizacija: autorizovani korisnici ili operatori/halfops
+- Konfigurabilni format poruke (ACTION/PRIVMSG)
+- Automatsko deljenje dugih poruka
+- Rate limiting za sprečavanje floodovanja
+
+**Konfiguracija:**
+- `set authorized_users` - Lista autorizovanih korisnika
+- `set use_action 1` - Koristi ACTION format (1) ili PRIVMSG (0)
+
+---
+
+### userinfo.tcl
+**Verzija:** 1.08  
+**Autor:** Scott G. Taylor (ButchBub), različiti kontributori  
+**Opis:** Proširenje whois komande sa dodatnim poljima za korisničke informacije. Omogućava korisnicima da čuvaju URL, IRL ime, email, telefon, ICQ, YouTube, Twitch, itd.
+
+**Komande:**
+- `/MSG botnick <polje> <vrednost>` - Postavi informaciju preko MSG
+- `.<polje> <vrednost>` - Postavi informaciju preko DCC
+- `.ch<polje> <who> [<vrednost>|NONE]` - Promeni tuđu informaciju (master flag)
+
+**Dostupna polja:** URL, BF, GF, IRL, EMAIL, DOB, PHONE, ICQ, YOUTUBE, TWITCH
+
+**Funkcionalnosti:**
+- Automatsko dodavanje polja u whois output
+- Podrška za MSG i DCC komande
+- Master komande za administraciju
+
+---
+
+### errorlog.tcl
+**Verzija:** 1.0.0  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Skripta za logovanje svih grešaka na #services kanal i u fajl. Automatski detektuje TCL greške i šalje ih na kanal.
+
+**Funkcionalnosti:**
+- Automatsko logovanje grešaka u fajl (`logs/error.log`)
+- Slanje grešaka na IRC kanal (#services)
+- Detekcija različitih tipova grešaka
+- Timestamp za svaku grešku
+
+**Konfiguracija:**
+- `set errorlog_channel "#services"` - Kanal za greške
+- `set errorlog_file "logs/error.log"` - Fajl za logovanje
+
+---
+
+### rehash.tcl
+**Verzija:** 1.0.0  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Omogućava autorizovanim korisnicima da rehashuju bot konfiguraciju preko IRC komande.
+
+**Komande:**
+- `!rehash` - Rehashuj bot konfiguraciju
+
+**Funkcionalnosti:**
+- Autorizacija preko liste korisnika
+- Case-insensitive matching
+- Provera i handle-a i nick-a
+
+**Konfiguracija:**
+- `set authorized_users` - Lista autorizovanih korisnika
+
+---
+
+### privmsg_forward.tcl
+**Verzija:** 1.0.0  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Prosleđuje sve privatne poruke koje bot primi na konfigurisani kanal. Korisno za monitoring i logovanje.
+
+**Funkcionalnosti:**
+- Automatsko prosleđivanje svih PRIVMSG poruka
+- Prikaz handle-a kada je dostupan
+- Validacija kanala pre slanja
+
+**Konfiguracija:**
+- `set privmsg_channel "#services"` - Destinacioni kanal
+
+---
+
+### tennis.tcl
+**Verzija:** 0.1337  
+**Autor:** munZe  
+**Opis:** Skripta za dohvatanje ATP tenis rangiranja sa atpworldtour.com. Prikazuje top 3 igrača sa detaljnim informacijama.
+
+**Komande:**
+- `!tenistop3` - Prikaži top 3 tenisera
+
+**Funkcionalnosti:**
+- Parsiranje HTML sajta
+- Formatiranje i prikaz rangiranja
+- HTTP podrška
+
+---
+
+## Python Skripte
+
+### imdb.py
+**Opis:** Primer korišćenja Python modula sa Eggdrop botom. Koristi `imdb` biblioteku za pretragu filmova.
+
+**Komande:**
+- `!movie <naziv filma>` - Pretraži film na IMDb
+
+**Zavisnosti:**
+- `imdb` Python paket (Cinemagoer)
+- Eggdrop Python modul
+
+---
+
+### urlTitle.py
+**Opis:** Primer korišćenja BeautifulSoup za ekstrakciju naslova sa web stranica.
+
+**Komande:**
+- `!title <URL>` - Prikaži naslov web stranice
+
+**Zavisnosti:**
+- `beautifulsoup4` Python paket
+- `requests` Python paket
+- Eggdrop Python modul
+
+---
+
+### greet.py
+**Opis:** Primer join event bindova u Pythonu. Pozdravlja korisnike kada se pridruže kanalu.
+
+**Funkcionalnosti:**
+- Pozdrav za sve korisnike
+- Poseban pozdrav za operatore
+- Automatsko čišćenje bindova pri rehashu
+
+---
+
+### bestfriend.py
+**Opis:** Primer konverzije TCL liste u Python listu. Biramo random "best friend" sa kanala.
+
+**Komande:**
+- `!friend` - Izaberi random "best friend" sa kanala
+
+**Funkcionalnosti:**
+- Demonstracija `parse_tcl_list()` funkcije
+- Rad sa korisnicima na kanalu
+
+---
+
+### listtls.py
+**Opis:** Primer konverzije TCL dict-a u Python dict. Lista TLS statusa socketova.
+
+**Komande:**
+- `!listtls` - Prikaži TLS status svih socketova
+
+**Funkcionalnosti:**
+- Demonstracija `parse_tcl_dict()` funkcije
+- Rad sa socket listom
+
+---
+
+## Outdated Skripte
+
+⚠️ **NAPOMENA:** Sledeće skripte trenutno ne rade, ali su u planu da se isprave:
+
+### tennis.tcl
+**Status:** Outdated - ne radi trenutno  
+**Razlog:** Verovatno promene na ATP sajtu ili HTTP strukture  
+**Plan:** Ispravka parsiranja i ažuriranje za novu strukturu sajta
+
+### vremenska prognoza
+**Status:** Outdated - ne radi trenutno  
+**Razlog:** Skripta nije pronađena u repozitorijumu, verovatno obrisana ili nedostaje  
+**Plan:** Rekreacija skripte za dohvatanje vremenske prognoze
+
+### vrijeme
+**Status:** Outdated - ne radi trenutno  
+**Razlog:** Skripta nije pronađena u repozitorijumu, verovatno obrisana ili nedostaje  
+**Plan:** Rekreacija skripte za dohvatanje trenutnog vremena/vremenske prognoze
+
+---
+
+## 📝 Napomene
+
+- Većina skripti je razvijena za Eggdrop 1.10.0+
+- TCL skripte zahtevaju standardne TCL pakete (http, tls)
+- Python skripte zahtevaju Eggdrop Python modul
+- Neke skripte imaju specifične zahteve (npr. Trf paket za gzip)
+
+## 📄 Licenca
+
+Većina skripti je pod MIT licencom. Proverite header svake skripte za specifične licence.
+
+## 👤 Autor
+
+Velimir Majstorov (AKA munZe)  
+DBase Network - irc.dbase.in.rs  
+GitHub: https://github.com/r0073rr0r/eggdrop-scripts
+
+---
+
+*Poslednje ažuriranje: 2025*
