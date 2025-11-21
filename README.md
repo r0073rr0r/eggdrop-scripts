@@ -1,17 +1,29 @@
-# Eggdrop Scripts Repository
+# 🥚 Eggdrop Scripts Repository
+
+![Eggdrop](https://img.shields.io/badge/Eggdrop-1.10.0+-blue.svg)
+![TCL](https://img.shields.io/badge/TCL-8.6+-green.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijene za DBase Network (irc.dbase.in.rs) i pokrivaju različite funkcionalnosti od zabave do administracije.
 
 ## 📋 Sadržaj
 
-- [TCL Skripte](#tcl-skripte)
-- [Zavisnosti](#zavisnosti)
+- [🎮 TCL Skripte](#-tcl-skripte)
+  - [Aktivne Skripte](#aktivne-skripte)
+  - [⚠️ Zastarele Skripte](#️-zastarele-skripte)
+- [📦 Zavisnosti](#-zavisnosti)
+- [📝 Napomene](#-napomene)
 
 ---
 
-## TCL Skripte
+## 🎮 TCL Skripte
 
-### holdem.tcl
+### Aktivne Skripte
+
+---
+
+## 🎴 holdem.tcl
+
 **Verzija:** 1.2.0  
 **Autor:** Steve Church (rojo), modifikovao Velimir Majstorov (munZe)  
 **Opis:** Kompletan Texas Hold'em poker sistem za IRC kanale. Podržava više igrača, bot igrače, sistem rangiranja, i kompletnu logiku pokera sa blindovima, betting rundama, i automatskim izračunavanjem pobednika.
@@ -40,7 +52,8 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ---
 
-### horoskop.tcl
+## 🔮 horoskop.tcl
+
 **Verzija:** 3.1337  
 **Autor:** tik-tak (original), modifikovao munZe  
 **Opis:** Skripta za dohvatanje horoskopa sa sajta astrolook.com. Podržava dnevne, nedeljne, mesečne, ljubavne, godišnje horoskope i srećne dane.
@@ -69,7 +82,8 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ---
 
-### cpu.tcl
+## 💻 cpu.tcl
+
 **Verzija:** 1.0.0  
 **Autor:** Velimir Majstorov (munZe)  
 **Opis:** Monitoring sistema za praćenje CPU opterećenja i memorije. Automatski upozorava kada load average pređe konfigurisani threshold.
@@ -92,7 +106,8 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ---
 
-### prcko.tcl
+## 😄 prcko.tcl
+
 **Verzija:** 1.337  
 **Autor:** Velimir Majstorov (munZe)  
 **Opis:** Zabavne komande za IRC kanale sa različitim procenama i porukama. Uključuje flood protection.
@@ -124,7 +139,8 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ---
 
-### rss-synd.tcl
+## 📰 rss-synd.tcl
+
 **Verzija:** 0.5.2  
 **Autor:** Andrew Scott, HM2K, modifikovao Velimir Majstorov (munZe)  
 **Opis:** Asinhroni RSS i Atom feed reader sa podrškom za više feedova, gzip kompresiju, automatsko slanje na kanale, i custom triggere.
@@ -148,7 +164,8 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ---
 
-### massslap.tcl
+## 👋 massslap.tcl
+
 **Verzija:** 1.0.0  
 **Autor:** Velimir Majstorov (munZe)  
 **Opis:** Komanda za slanje masovnih slap poruka svim korisnicima na kanalu. Podržava ACTION (/me) i PRIVMSG format.
@@ -168,7 +185,8 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ---
 
-### rehash.tcl
+## 🔄 rehash.tcl
+
 **Verzija:** 1.0.0  
 **Autor:** Velimir Majstorov (munZe)  
 **Opis:** Omogućava autorizovanim korisnicima da rehashuju bot konfiguraciju preko IRC komande.
@@ -186,7 +204,8 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ---
 
-### privmsg_forward.tcl
+## 📨 privmsg_forward.tcl
+
 **Verzija:** 1.0.0  
 **Autor:** Velimir Majstorov (munZe)  
 **Opis:** Prosleđuje sve privatne poruke koje bot primi na konfigurisani kanal. Korisno za monitoring i logovanje.
@@ -201,56 +220,8 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ---
 
-### tenis.tcl
-**Verzija:** 0.1337  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Skripta za dohvatanje ATP tenis rangiranja sa atpworldtour.com. Prikazuje top 3 igrača sa detaljnim informacijama.
+## 🛡️ PIKbl.tcl
 
-**Komande:**
-- `!tenistop3` - Prikaži top 3 tenisera
-
-**Funkcionalnosti:**
-- Parsiranje HTML sajta
-- Formatiranje i prikaz rangiranja
-- HTTP podrška
-
----
-
-### vremenska-prognoza.tcl
-**Verzija:** 1.0.0  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Skripta za dohvatanje vremenske prognoze za gradove u Srbiji sa sajta blic.rs. Prikazuje trenutne vremenske uslove sa detaljnim informacijama.
-
-**Komande:**
-- `!vreme <grad>` - Prikaži vremensku prognozu za odabrani grad
-
-**Dostupni gradovi:** Beograd, Pristina, Crni-Vrh, Kikinda, Negotin, Sjenica, Valjevo, Krusevac, Pancevo, Kragujevac, Novi-Sad, Kopaonik, Dimitrovgrad, Kraljevo, Palic, Smederevo, Zrenjanin, Vrsac, Cacak, Subotica, Nis, Vranje, Loznica, Leskova, Ruma, Sremska-Mitrovica, Zlatibor, Knjazevac, Uzice
-
-**Funkcionalnosti:**
-- Parsiranje HTML sajta
-- Prikaz trenutnih vremenskih uslova (temperatura, pritisak, vetar, vlažnost, vidljivost, UV index)
-- UTF-8 encoding podrška
-
----
-
-### vrijeme.tcl
-**Verzija:** 1.0.0  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Skripta za dohvatanje vremenske prognoze za gradove u Bosni i Hercegovini sa sajta prognozavremena.info. Prikazuje trenutne vremenske uslove sa detaljnim informacijama.
-
-**Komande:**
-- `!vrijeme <grad>` - Prikaži vremensku prognozu za odabrani grad
-
-**Dostupni gradovi:** Banja Luka, Bihac, Bijeljina, Brcko, Jahorina, Mostar, Neum, Sarajevo, Trebinje, Tuzla, Visegrad
-
-**Funkcionalnosti:**
-- Parsiranje HTML sajta
-- Prikaz trenutnih vremenskih uslova (temperatura, pritisak, brzina vetra, vlažnost, vidljivost, subjektivno, naleti vetra, izlazak/zalazak sunca)
-- UTF-8 encoding podrška
-
----
-
-### PIKbl.tcl
 **Verzija:** 1.337  
 **Autor:** Velimir Majstorov (munZe)  
 **Opis:** Skripta za automatsko proveravanje IP adresa korisnika koji se povezuju na IRC server. Proverava IP adrese preko pricaonica.krstarica.com servisa i automatski banuje problematične IP adrese.
@@ -271,9 +242,77 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ---
 
-## Zavisnosti
+### ⚠️ Zastarele Skripte
 
-### trf2.1.5.tar.gz
+⚠️ **NAPOMENA:** Sledeće skripte su zastarele i trenutno ne rade. Mogu biti ispravljene u budućnosti.
+
+---
+
+## 🎾 tenis.tcl
+
+**Status:** ⚠️ **ZASTARELO** - Ne radi trenutno  
+**Verzija:** 0.1337  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Skripta za dohvatanje ATP tenis rangiranja sa atpworldtour.com. Prikazuje top 3 igrača sa detaljnim informacijama.
+
+**Komande:**
+- `!tenistop3` - Prikaži top 3 tenisera
+
+**Funkcionalnosti:**
+- Parsiranje HTML sajta
+- Formatiranje i prikaz rangiranja
+- HTTP podrška
+
+**Razlog zastarelosti:** Verovatno promene na ATP sajtu ili HTTP strukture. Plan: Ispravka parsiranja i ažuriranje za novu strukturu sajta.
+
+---
+
+## 🌤️ vremenska-prognoza.tcl
+
+**Status:** ⚠️ **ZASTARELO** - Ne radi trenutno  
+**Verzija:** 1.0.0  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Skripta za dohvatanje vremenske prognoze za gradove u Srbiji sa sajta blic.rs. Prikazuje trenutne vremenske uslove sa detaljnim informacijama.
+
+**Komande:**
+- `!vreme <grad>` - Prikaži vremensku prognozu za odabrani grad
+
+**Dostupni gradovi:** Beograd, Pristina, Crni-Vrh, Kikinda, Negotin, Sjenica, Valjevo, Krusevac, Pancevo, Kragujevac, Novi-Sad, Kopaonik, Dimitrovgrad, Kraljevo, Palic, Smederevo, Zrenjanin, Vrsac, Cacak, Subotica, Nis, Vranje, Loznica, Leskova, Ruma, Sremska-Mitrovica, Zlatibor, Knjazevac, Uzice
+
+**Funkcionalnosti:**
+- Parsiranje HTML sajta
+- Prikaz trenutnih vremenskih uslova (temperatura, pritisak, vetar, vlažnost, vidljivost, UV index)
+- UTF-8 encoding podrška
+
+**Razlog zastarelosti:** Verovatno promene na blic.rs sajtu ili HTTP strukture. Plan: Rekreacija skripte za dohvatanje vremenske prognoze.
+
+---
+
+## 🌧️ vrijeme.tcl
+
+**Status:** ⚠️ **ZASTARELO** - Ne radi trenutno  
+**Verzija:** 1.0.0  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Skripta za dohvatanje vremenske prognoze za gradove u Bosni i Hercegovini sa sajta prognozavremena.info. Prikazuje trenutne vremenske uslove sa detaljnim informacijama.
+
+**Komande:**
+- `!vrijeme <grad>` - Prikaži vremensku prognozu za odabrani grad
+
+**Dostupni gradovi:** Banja Luka, Bihac, Bijeljina, Brcko, Jahorina, Mostar, Neum, Sarajevo, Trebinje, Tuzla, Visegrad
+
+**Funkcionalnosti:**
+- Parsiranje HTML sajta
+- Prikaz trenutnih vremenskih uslova (temperatura, pritisak, brzina vetra, vlažnost, vidljivost, subjektivno, naleti vetra, izlazak/zalazak sunca)
+- UTF-8 encoding podrška
+
+**Razlog zastarelosti:** Verovatno promene na prognozavremena.info sajtu ili HTTP strukture. Plan: Rekreacija skripte za dohvatanje vremenske prognoze.
+
+---
+
+## 📦 Zavisnosti
+
+### 📦 trf2.1.5.tar.gz
+
 **Opis:** Trf (Trf Extension) je TCL ekstenzija koja je potrebna za `rss-synd.tcl` skriptu. Originalna Trf ekstenzija je zastarela i ne radi sa novijim verzijama TCL-a (TCL 8.6+). 
 
 **Status:** Modifikovana verzija uključena u repozitorijum je prilagođena da radi sa TCL 8.6. Modifikacije su urađene od strane autora (munZe) kako bi skripta `rss-synd.tcl` mogla da koristi gzip dekompresiju za RSS feedove koji su kompresovani.
@@ -294,15 +333,19 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 - `rss-synd.tcl` zahteva Trf ekstenziju za gzip dekompresiju (vidi sekciju Zavisnosti)
 - Sve skripte su testirane i optimizovane za TCL 8.6
 
+---
+
 ## 📄 Licenca
 
 Većina skripti je pod MIT licencom. Proverite header svake skripte za specifične licence.
 
+---
+
 ## 👤 Autor
 
-Velimir Majstorov (AKA munZe)  
-DBase Network - irc.dbase.in.rs  
-GitHub: https://github.com/r0073rr0r/eggdrop-scripts
+**Velimir Majstorov** (AKA munZe)  
+🌐 DBase Network - irc.dbase.in.rs  
+🔗 GitHub: [r0073rr0r/eggdrop-scripts](https://github.com/r0073rr0r/eggdrop-scripts)
 
 ---
 
