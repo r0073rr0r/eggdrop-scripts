@@ -7,6 +7,7 @@ Thank you for your interest in contributing to the Eggdrop Scripts repository! T
 ### Reporting Bugs
 
 If you find a bug, please open an issue with:
+
 - A clear, descriptive title
 - Steps to reproduce the bug
 - Expected behavior
@@ -17,6 +18,7 @@ If you find a bug, please open an issue with:
 ### Suggesting Enhancements
 
 Enhancement suggestions are welcome! Please include:
+
 - A clear description of the enhancement
 - Use cases and examples
 - Why this enhancement would be useful
@@ -57,6 +59,7 @@ proc my_proc {arg1 arg2} {
 ### Script Structure
 
 Each script should include:
+
 - Header with version, author, and description
 - Configuration section at the top
 - Clear procedure definitions
@@ -75,6 +78,7 @@ Each script should include:
 ### PR Title Format
 
 Use descriptive titles:
+
 - `Add feature: description`
 - `Fix bug: description`
 - `Update script: description`
@@ -82,6 +86,7 @@ Use descriptive titles:
 ## Testing
 
 Before submitting:
+
 - Test your script on a test Eggdrop instance
 - Verify it works with the latest Eggdrop version
 - Check for any error messages in logs
@@ -96,6 +101,7 @@ Before submitting:
 ## Questions?
 
 Feel free to:
+
 - Open an issue for questions
 - Contact the maintainer on IRC: irc.dbase.in.rs
 - Check existing issues and discussions

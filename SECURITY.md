@@ -14,12 +14,14 @@ We currently support security updates for the following versions:
 If you discover a security vulnerability, please **DO NOT** open a public issue. Instead, please report it privately using one of the following methods:
 
 ### Preferred Method
+
 - **Email**: Report via GitHub Security Advisories (if available)
 - **IRC**: Contact munZe on irc.dbase.in.rs (DBase Network)
 
 ### What to Include
 
 When reporting a vulnerability, please include:
+
 - Description of the vulnerability
 - Steps to reproduce
 - Potential impact
@@ -29,6 +31,7 @@ When reporting a vulnerability, please include:
 ### Response Time
 
 We aim to:
+
 - Acknowledge receipt within 48 hours
 - Provide initial assessment within 7 days
 - Keep you updated on progress
@@ -36,6 +39,7 @@ We aim to:
 ### Security Best Practices
 
 When using these scripts:
+
 - **Review code** before deploying to production
 - **Keep Eggdrop updated** to the latest stable version
 - **Use strong passwords** for bot authentication

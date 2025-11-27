@@ -229,6 +229,7 @@ proc pub_nabijem {nick mask hand chan text} {
 proc pub_komande {nick mask hand chan text} {
     putact $chan "trenutno forsira komande \002 !drka <nick> \037-\037 !izmeri <nick> \037-\037 !prc <nick> \037-\037 !sise <nick> \037-\037 !hacker <nick> \037-\037 !gay <nick>"
     putact $chan "\002 !sexy <nick> \037-\037 !laze <nick> \037-\037 !istina <nick> \037-\037 !ozbiljan <nick> \037-\037 !ozbiljna <nick> \037-\037 !crnac <nick> \037-\037 !veverica <nick> \037-\037 !govedo <nick> \037-\037 !dupe <nick>"
+    putact $chan "\002 !ebook <naziv> \037-\037 !knjiga <naziv> \037-\037 Pretraga e-knjiga na Nextcloud (može sa razmakom, npr: !knjiga Perun)"
 }
 
 ###############################################################################

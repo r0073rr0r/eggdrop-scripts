@@ -1,6 +1,6 @@
 # 🥚 Eggdrop Scripts Repository
 
-![Eggdrop](https://img.shields.io/badge/Eggdrop-1.10.0+-blue.svg)
+![Eggdrop](https://img.shields.io/badge/Eggdrop-1.10.1+-blue.svg)
 ![TCL](https://img.shields.io/badge/TCL-8.6+-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
@@ -31,6 +31,7 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 **Opis:** Kompletan Texas Hold'em poker sistem za IRC kanale. Podržava više igrača, bot igrače, sistem rangiranja, i kompletnu logiku pokera sa blindovima, betting rundama, i automatskim izračunavanjem pobednika.
 
 **Komande:**
+
 - `!holdem`, `!th`, `!texas`, `!texasholdem`, `!the` - Pokreni novu igru
 - `!join` - Pridruži se igri u toku
 - `!play` - Pokreni igru sa trenutnim igračima
@@ -42,10 +43,12 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 - `!clearrankings` - Obriši sva rangiranja (samo operatori kanala)
 
 **Konfiguracija:**
+
 - `.chanset #channel +holdem` - Omogući skriptu na kanalu
 - Podesive opcije: buy-in, blindovi, timeout, bot igrači, itd.
 
 **Funkcionalnosti:**
+
 - Sistem rangiranja sa automatskim resetovanjem svakog meseca
 - Per-user preferencije za tip poruka sa kartama (NOTICE/PRIVMSG)
 - Podrška za UTF-8 Unicode karaktere za karte
@@ -61,6 +64,7 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 **Opis:** Skripta za dohvatanje horoskopa sa sajta astrolook.com. Podržava dnevne, nedeljne, mesečne, ljubavne, godišnje horoskope i srećne dane.
 
 **Komande:**
+
 - `!horoskop <znak>` ili `!dnevni <znak>` - Dnevni horoskop
 - `!nedeljni <znak>` - Nedeljni horoskop
 - `!mesecni <znak>` - Mesečni horoskop
@@ -71,6 +75,7 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 **Dostupni znakovi:** ovan, bik, blizanci, rak, lav, devica, vaga, skorpija/skorpion, strelac, jarac, vodolija, ribe
 
 **Funkcionalnosti:**
+
 - Flood protection sa dnevnim limitima
 - Kesiranje na dnevnom nivou za brže učitavanje
 - Podrška za HTTPS/TLS
@@ -78,6 +83,7 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 - Konfigurabilni način slanja (kanal/PRIVMSG/NOTICE)
 
 **Konfiguracija:**
+
 - `set saljina 1` - Slanje na kanal
 - `set saljina 2` - Slanje na PRIVMSG (default)
 - `set saljina 3` - Slanje na NOTICE
@@ -91,17 +97,20 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 **Opis:** Monitoring sistema za praćenje CPU opterećenja i memorije. Automatski upozorava kada load average pređe konfigurisani threshold.
 
 **Komande:**
+
 - `!cpu` - Prikaži CPU load average (1min, 5min, 15min)
 - `!mem` - Prikaži informacije o memoriji (free, available, used, total)
 - `!timerz` - Lista svih aktivnih timera u botu
 
 **Funkcionalnosti:**
+
 - Automatsko periodično proveravanje CPU opterećenja
 - Upozorenja na kanalu kada threshold bude prekoračen
 - Ograničenje komandi na određeni kanal (#services)
 - Autorizacija: admin nicks (munZe) ili master flag/operatori
 
 **Konfiguracija:**
+
 - `set cpu_monitor_channel "#services"` - Kanal za monitoring
 - `set cpu_check_interval 300` - Interval provere (sekunde)
 - `set cpu_threshold 5.0` - Threshold za upozorenja
@@ -112,9 +121,10 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 **Verzija:** 1.337  
 **Autor:** Velimir Majstorov (munZe)  
-**Opis:** Zabavne komande za IRC kanale sa različitim procenama i porukama. Uključuje flood protection.
+**Opis:** Zabavne komande za IRC kanale sa različitim procenama i porukama. Uključuje flood protection i interaktivne odgovore na određene fraze u kanalu.
 
 **Komande:**
+
 - `!prc <nick>` - Random "prc" poruka
 - `!drka <nick>` - Random "drka" poruka
 - `!izmeri <nick>` - Random veličina penisa (10-25 cm)
@@ -134,10 +144,29 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 - `!iamon` - Lista kanala na kojima je bot (zahteva +n flag)
 - `!ignore <nick>` - Dodaj korisnika na ignore listu (zahteva +m flag)
 
+**Interaktivni odgovori:**
+
+Skripta automatski reaguje na određene fraze u kanalu:
+
+- Reaguje na frazu "kako je" sa odgovorom
+- Reaguje na određene vulgarne fraze sa odgovorima
+- Reaguje na frazu "nabijem" sa odgovorom
+
 **Funkcionalnosti:**
+
 - Flood protection sa automatskim banovanjem
-- Lista izuzetih nickova sa posebnim odgovorima
-- Interaktivni odgovori na određene fraze u kanalu
+- Lista izuzetih nickova (`izuzmi`) sa posebnim odgovorima
+- Interaktivni odgovori na određene fraze u kanalu (pubm bindovi)
+- Konfigurabilni flood parametri (floodTime, floodmsg, banDuration)
+- Case-insensitive matching za komande
+- Posebni odgovori za izuzete nickove
+
+**Konfiguracija:**
+
+- `set izuzmi [list "munZe" "\[85\]"]` - Lista nickova sa posebnim odgovorima
+- `set floodTime 5` - Vremenski prozor za flood detekciju (sekunde)
+- `set floodmsg 3` - Maksimalan broj poruka u floodTime prozoru
+- `set banDuration 10` - Trajanje bana za flood (minuti)
 
 ---
 
@@ -148,10 +177,12 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 **Opis:** Asinhroni RSS i Atom feed reader sa podrškom za više feedova, gzip kompresiju, automatsko slanje na kanale, i custom triggere.
 
 **Komande:**
+
 - `!vesti` ili `!rss vesti` - Prikaži najnovije vesti (do 10 stavki)
 - `!rss` - Lista svih dostupnih feedova
 
 **Funkcionalnosti:**
+
 - HTTPS/TLS podrška
 - Gzip dekompresija (zahteva Trf paket - vidi sekciju Zavisnosti)
 - Automatsko ažuriranje na konfigurisanim intervalima
@@ -160,6 +191,7 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 - Baza podataka za praćenje novih stavki
 
 **Konfiguracija:**
+
 - Feedovi se konfigurišu direktno u skripti (rss() array)
 - Baza podataka: `feeds/` (kreira se automatski)
 - Debug logging: kontrolisano preko "debug" settinga
@@ -173,15 +205,18 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 **Opis:** Komanda za slanje masovnih slap poruka svim korisnicima na kanalu. Podržava ACTION (/me) i PRIVMSG format.
 
 **Komande:**
+
 - `.call [opciona poruka]` - Pošalji mass slap svim korisnicima na kanalu
 
 **Funkcionalnosti:**
+
 - Dual autorizacija: autorizovani korisnici ili operatori/halfops
 - Konfigurabilni format poruke (ACTION/PRIVMSG)
 - Automatsko deljenje dugih poruka
 - Rate limiting za sprečavanje floodovanja
 
 **Konfiguracija:**
+
 - `set authorized_users` - Lista autorizovanih korisnika
 - `set use_action 1` - Koristi ACTION format (1) ili PRIVMSG (0)
 
@@ -194,14 +229,17 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 **Opis:** Omogućava autorizovanim korisnicima da rehashuju bot konfiguraciju preko IRC komande.
 
 **Komande:**
+
 - `!rehash` - Rehashuj bot konfiguraciju
 
 **Funkcionalnosti:**
+
 - Autorizacija preko liste korisnika
 - Case-insensitive matching
 - Provera i handle-a i nick-a
 
 **Konfiguracija:**
+
 - `set authorized_users` - Lista autorizovanih korisnika
 
 ---
@@ -213,12 +251,45 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 **Opis:** Prosleđuje sve privatne poruke koje bot primi na konfigurisani kanal. Korisno za monitoring i logovanje.
 
 **Funkcionalnosti:**
+
 - Automatsko prosleđivanje svih PRIVMSG poruka
 - Prikaz handle-a kada je dostupan
 - Validacija kanala pre slanja
 
 **Konfiguracija:**
+
 - `set privmsg_channel "#services"` - Destinacioni kanal
+
+---
+
+## 📚 nextcloud_ebooks.tcl
+
+**Verzija:** 1.0.0  
+**Autor:** Velimir Majstorov (munZe)  
+**Opis:** Skripta za pretragu i deljenje e-knjiga iz Nextcloud servera. Omogućava korisnicima da pretražuju biblioteku e-knjiga i automatski kreira deljene linkove za pronađene knjige.
+
+**Komande:**
+
+- `!ebook <naziv knjige>` ili `!knjiga <naziv knjige>` - Pretraži biblioteku e-knjiga i kreira deljeni link
+
+**Funkcionalnosti:**
+
+- Pretraga e-knjiga u Nextcloud folderu preko WebDAV API-ja
+- Automatsko kreiranje deljenih linkova za pronađene knjige
+- Podrška za UTF-8 encoding (srpska slova)
+- HTTPS/TLS podrška za sigurnu komunikaciju
+- Base64 autentifikacija sa Nextcloud App Password
+- URL encoding/dekodovanje za pravilno rukovanje nazivima fajlova
+- Automatsko pronalaženje postojećih deljenih linkova
+- Prikaz više rezultata ako postoji više knjiga sa istim terminom
+
+**Konfiguracija:**
+
+- `set nextcloud_url "https://cloud.dbase.in.rs"` - URL vašeg Nextcloud servera
+- `set nextcloud_username "<vas-username>"` - Vaš Nextcloud username
+- `set nextcloud_app_password "<vas-app-password>"` - App password (kreirati u Nextcloud Settings > Security > Devices & sessions)
+
+**Napomena:** Zahteva base64 TCL paket za autentifikaciju. Skripta automatski proverava dostupnost paketa i prijavljuje greške ako nedostaju.
 
 ---
 
@@ -236,9 +307,11 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 **Opis:** Skripta za dohvatanje ATP tenis rangiranja sa atpworldtour.com. Prikazuje top 3 igrača sa detaljnim informacijama.
 
 **Komande:**
+
 - `!tenistop3` - Prikaži top 3 tenisera
 
 **Funkcionalnosti:**
+
 - Parsiranje HTML sajta
 - Formatiranje i prikaz rangiranja
 - HTTP podrška
@@ -255,11 +328,13 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 **Opis:** Skripta za dohvatanje vremenske prognoze za gradove u Srbiji sa sajta blic.rs. Prikazuje trenutne vremenske uslove sa detaljnim informacijama.
 
 **Komande:**
+
 - `!vreme <grad>` - Prikaži vremensku prognozu za odabrani grad
 
 **Dostupni gradovi:** Beograd, Pristina, Crni-Vrh, Kikinda, Negotin, Sjenica, Valjevo, Krusevac, Pancevo, Kragujevac, Novi-Sad, Kopaonik, Dimitrovgrad, Kraljevo, Palic, Smederevo, Zrenjanin, Vrsac, Cacak, Subotica, Nis, Vranje, Loznica, Leskova, Ruma, Sremska-Mitrovica, Zlatibor, Knjazevac, Uzice
 
 **Funkcionalnosti:**
+
 - Parsiranje HTML sajta
 - Prikaz trenutnih vremenskih uslova (temperatura, pritisak, vetar, vlažnost, vidljivost, UV index)
 - UTF-8 encoding podrška
@@ -276,11 +351,13 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 **Opis:** Skripta za dohvatanje vremenske prognoze za gradove u Bosni i Hercegovini sa sajta prognozavremena.info. Prikazuje trenutne vremenske uslove sa detaljnim informacijama.
 
 **Komande:**
+
 - `!vrijeme <grad>` - Prikaži vremensku prognozu za odabrani grad
 
 **Dostupni gradovi:** Banja Luka, Bihac, Bijeljina, Brcko, Jahorina, Mostar, Neum, Sarajevo, Trebinje, Tuzla, Visegrad
 
 **Funkcionalnosti:**
+
 - Parsiranje HTML sajta
 - Prikaz trenutnih vremenskih uslova (temperatura, pritisak, brzina vetra, vlažnost, vidljivost, subjektivno, naleti vetra, izlazak/zalazak sunca)
 - UTF-8 encoding podrška
@@ -292,11 +369,12 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 ## 🛡️ PIKbl.tcl
 
 **Status:** ⚠️ **ZASTARELO** - Ne radi trenutno  
-**Verzija:** 1.337  
+**Verzija:** 1.337
 **Autor:** Velimir Majstorov (munZe)  
 **Opis:** Skripta za automatsko proveravanje IP adresa korisnika koji se povezuju na IRC server. Proverava IP adrese preko pricaonica.krstarica.com servisa i automatski banuje problematične IP adrese.
 
 **Funkcionalnosti:**
+
 - Automatsko hvatanje novih konekcija
 - Provera IP adresa preko eksternog servisa
 - Automatsko banovanje problematičnih IP adresa (GLINE/ZLINE)
@@ -304,6 +382,7 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 - Oper up na serveru za izvršavanje banova
 
 **Konfiguracija:**
+
 - `set BanAkoJeVeceOd` - Threshold za banovanje (default: 60.6)
 - `set KanalZaObavestenja` - Kanal za obaveštenja (default: #services)
 - `set bantype` - Tip bana (GLINE/ZLINE)
@@ -318,11 +397,12 @@ Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijen
 
 ### 📦 trf2.1.5.tar.gz
 
-**Opis:** Trf (Trf Extension) je TCL ekstenzija koja je potrebna za `rss-synd.tcl` skriptu. Originalna Trf ekstenzija je zastarela i ne radi sa novijim verzijama TCL-a (TCL 8.6+). 
+**Opis:** Trf (Trf Extension) je TCL ekstenzija koja je potrebna za `rss-synd.tcl` skriptu. Originalna Trf ekstenzija je zastarela i ne radi sa novijim verzijama TCL-a (TCL 8.6+).
 
 **Status:** Modifikovana verzija uključena u repozitorijum je prilagođena da radi sa TCL 8.6. Modifikacije su urađene od strane autora (munZe) kako bi skripta `rss-synd.tcl` mogla da koristi gzip dekompresiju za RSS feedove koji su kompresovani.
 
 **Instalacija:**
+
 1. Raspakujte `trf2.1.5.tar.gz` arhivu
 2. Kompajlirajte i instalirajte Trf ekstenziju prema uputstvima u paketu
 3. Uverite se da je Trf ekstenzija dostupna u TCL okruženju pre pokretanja `rss-synd.tcl`
@@ -372,4 +452,6 @@ Većina skripti je pod MIT licencom. Proverite [LICENSE](LICENSE) fajl za detalj
 
 ---
 
-*Poslednje ažuriranje: 2025*
+## Poslednje ažuriranje
+
+2025
