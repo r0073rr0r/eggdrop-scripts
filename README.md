@@ -4,419 +4,464 @@
 ![TCL](https://img.shields.io/badge/TCL-8.6+-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-Repozitorijum sa kolekcijom TCL skripti za Eggdrop IRC bota. Skripte su razvijene za DBase Network (irc.dbase.in.rs) i pokrivaju različite funkcionalnosti od zabave do administracije.
+A repository containing a collection of TCL scripts for Eggdrop IRC bot. Scripts are developed for DBase Network (irc.dbase.in.rs) and cover various functionalities from entertainment to administration.
 
-## 📋 Sadržaj
+**Language:** [🇷🇸 Serbian (Srpski)](README.sr.md) | [🇬🇧 English](README.md)
 
-- [🎮 TCL Skripte](#-tcl-skripte)
-  - [Aktivne Skripte](#aktivne-skripte)
-  - [⚠️ Zastarele Skripte](#️-zastarele-skripte)
-- [📦 Zavisnosti](#-zavisnosti)
-- [📝 Napomene](#-napomene)
+## 📋 Table of Contents
+
+- [🎮 TCL Scripts](#-tcl-scripts)
+  - [Active Scripts](#active-scripts)
+  - [⚠️ Deprecated Scripts](#️-deprecated-scripts)
+- [📦 Dependencies](#-dependencies)
+- [📝 Notes](#-notes)
 - [🤝 Contributing](#-contributing)
 - [🔒 Security](#-security)
 
 ---
 
-## 🎮 TCL Skripte
+## 🎮 TCL Scripts
 
-### Aktivne Skripte
+### Active Scripts
 
 ---
 
 ## 🎴 holdem.tcl
 
-**Verzija:** 1.2.0  
-**Autor:** Steve Church (rojo), modifikovao Velimir Majstorov (munZe)  
-**Opis:** Kompletan Texas Hold'em poker sistem za IRC kanale. Podržava više igrača, bot igrače, sistem rangiranja, i kompletnu logiku pokera sa blindovima, betting rundama, i automatskim izračunavanjem pobednika.
+**Version:** 1.2.0  
+**Author:** Steve Church (rojo), modified by Velimir Majstorov (munZe)  
+**Description:** Complete Texas Hold'em poker system for IRC channels. Supports multiple players, bot players, ranking system, and complete poker logic with blinds, betting rounds, and automatic winner calculation.
 
-**Komande:**
+**Commands:**
 
-- `!holdem`, `!th`, `!texas`, `!texasholdem`, `!the` - Pokreni novu igru
-- `!join` - Pridruži se igri u toku
-- `!play` - Pokreni igru sa trenutnim igračima
-- `!rankings` - Prikaži top 10 rangiranje (dodaj 'channel' za prikaz na kanalu)
-- `!rank` - Prikaži svoje lično rangiranje
-- `!cardmsg <notice|privmsg>` - Podesi kako primaš poruke sa kartama
-- `!help` - Prikaži sve dostupne komande
-- `!stop`, `!end`, `!endgame`, `!stfu`, `!quiet` - Zaustavi trenutnu igru (samo operatori ili pokretač igre)
-- `!clearrankings` - Obriši sva rangiranja (samo operatori kanala)
+- `!holdem`, `!th`, `!texas`, `!texasholdem`, `!the` - Start a new game
+- `!join` - Join a game in progress
+- `!play` - Start the game with current players
+- `!rankings` - Show top 10 rankings (add 'channel' to display on channel)
+- `!rank` - Show your personal ranking
+- `!cardmsg <notice|privmsg>` - Set how you receive card messages
+- `!help` - Show all available commands
+- `!stop`, `!end`, `!endgame`, `!stfu`, `!quiet` - Stop current game (operators or game starter only)
+- `!clearrankings` - Clear all rankings (channel operators only)
 
-**Konfiguracija:**
+**Configuration:**
 
-- `.chanset #channel +holdem` - Omogući skriptu na kanalu
-- Podesive opcije: buy-in, blindovi, timeout, bot igrači, itd.
+- `.chanset #channel +holdem` - Enable script on channel
+- Configurable options: buy-in, blinds, timeout, bot players, etc.
 
-**Funkcionalnosti:**
+**Features:**
 
-- Sistem rangiranja sa automatskim resetovanjem svakog meseca
-- Per-user preferencije za tip poruka sa kartama (NOTICE/PRIVMSG)
-- Podrška za UTF-8 Unicode karaktere za karte
-- AI bot igrači sa konfigurabilnom agresivnošću
-- Statistike: igre odigrane, ruke osvojene, ukupni poeni
+- Ranking system with automatic monthly reset
+- Per-user preferences for card message type (NOTICE/PRIVMSG)
+- UTF-8 Unicode character support for cards
+- AI bot players with configurable aggressiveness
+- Statistics: games played, hands won, total points
 
 ---
 
 ## 🔮 horoskop.tcl
 
-**Verzija:** 3.1337  
-**Autor:** tik-tak (original), modifikovao munZe  
-**Opis:** Skripta za dohvatanje horoskopa sa sajta astrolook.com. Podržava dnevne, nedeljne, mesečne, ljubavne, godišnje horoskope i srećne dane.
+**Version:** 3.1337  
+**Author:** tik-tak (original), modified by munZe  
+**Description:** Script for fetching horoscopes from astrolook.com. Supports daily, weekly, monthly, love, yearly horoscopes and lucky days.
 
-**Komande:**
+**Commands:**
 
-- `!horoskop <znak>` ili `!dnevni <znak>` - Dnevni horoskop
-- `!nedeljni <znak>` - Nedeljni horoskop
-- `!mesecni <znak>` - Mesečni horoskop
-- `!ljubavni <znak>` - Ljubavni horoskop
-- `!godisnji <znak>` - Godišnji horoskop
-- `!srecni <znak>` ili `!srecni-dani <znak>` - Srećni dani
+- `!horoskop <sign>` or `!dnevni <sign>` - Daily horoscope
+- `!nedeljni <sign>` - Weekly horoscope
+- `!mesecni <sign>` - Monthly horoscope
+- `!ljubavni <sign>` - Love horoscope
+- `!godisnji <sign>` - Yearly horoscope
+- `!srecni <sign>` or `!srecni-dani <sign>` - Lucky days
 
-**Dostupni znakovi:** ovan, bik, blizanci, rak, lav, devica, vaga, skorpija/skorpion, strelac, jarac, vodolija, ribe
+**Available signs:** ovan, bik, blizanci, rak, lav, devica, vaga, skorpija/skorpion, strelac, jarac, vodolija, ribe
 
-**Funkcionalnosti:**
+**Features:**
 
-- Flood protection sa dnevnim limitima
-- Kesiranje na dnevnom nivou za brže učitavanje
-- Podrška za HTTPS/TLS
-- Privatne komande (MSG botu)
-- Konfigurabilni način slanja (kanal/PRIVMSG/NOTICE)
+- Flood protection with daily limits
+- Daily-level caching for faster loading
+- HTTPS/TLS support
+- Private commands (MSG to bot)
+- Configurable sending method (channel/PRIVMSG/NOTICE)
 
-**Konfiguracija:**
+**Configuration:**
 
-- `set saljina 1` - Slanje na kanal
-- `set saljina 2` - Slanje na PRIVMSG (default)
-- `set saljina 3` - Slanje na NOTICE
+- `set saljina 1` - Send to channel
+- `set saljina 2` - Send via PRIVMSG (default)
+- `set saljina 3` - Send via NOTICE
 
 ---
 
 ## 💻 cpu.tcl
 
-**Verzija:** 1.0.0  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Monitoring sistema za praćenje CPU opterećenja i memorije. Automatski upozorava kada load average pređe konfigurisani threshold.
+**Version:** 1.0.0  
+**Author:** Velimir Majstorov (munZe)  
+**Description:** System monitoring for tracking CPU load and memory. Automatically warns when load average exceeds configured threshold.
 
-**Komande:**
+**Commands:**
 
-- `!cpu` - Prikaži CPU load average (1min, 5min, 15min)
-- `!mem` - Prikaži informacije o memoriji (free, available, used, total)
-- `!timerz` - Lista svih aktivnih timera u botu
+- `!cpu` - Show CPU load average (1min, 5min, 15min)
+- `!mem` - Show memory information (free, available, used, total)
+- `!timerz` - List all active timers in bot
 
-**Funkcionalnosti:**
+**Features:**
 
-- Automatsko periodično proveravanje CPU opterećenja
-- Upozorenja na kanalu kada threshold bude prekoračen
-- Ograničenje komandi na određeni kanal (#services)
-- Autorizacija: admin nicks (munZe) ili master flag/operatori
+- Automatic periodic CPU load checking
+- Channel warnings when threshold is exceeded
+- Command restriction to specific channel (#services)
+- Authorization: admin nicks (munZe) or master flag/operators
 
-**Konfiguracija:**
+**Configuration:**
 
-- `set cpu_monitor_channel "#services"` - Kanal za monitoring
-- `set cpu_check_interval 300` - Interval provere (sekunde)
-- `set cpu_threshold 5.0` - Threshold za upozorenja
+- `set cpu_monitor_channel "#services"` - Channel for monitoring
+- `set cpu_check_interval 300` - Check interval (seconds)
+- `set cpu_threshold 5.0` - Threshold for warnings
 
 ---
 
 ## 😄 prcko.tcl
 
-**Verzija:** 1.337  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Zabavne komande za IRC kanale sa različitim procenama i porukama. Uključuje flood protection i interaktivne odgovore na određene fraze u kanalu.
+**Version:** 1.337  
+**Author:** Velimir Majstorov (munZe)  
+**Description:** Fun commands for IRC channels with various percentages and messages. Includes flood protection and interactive responses to certain phrases in the channel.
 
-**Komande:**
+**Commands:**
 
-- `!prc <nick>` - Random "prc" poruka
-- `!drka <nick>` - Random "drka" poruka
-- `!izmeri <nick>` - Random veličina penisa (10-25 cm)
-- `!sise <nick>` - Random veličina grudi
-- `!sexy <nick>` - Random sexy procenat (0-100%)
-- `!gay <nick>` - Random gay procenat (0-100%)
-- `!hacker <nick>` - Random hacker procenat (0-100%)
-- `!laze <nick>` - Random procenat laži (0-100%)
-- `!istina <nick>` - Random procenat istine (0-100%)
-- `!ozbiljan <nick>` / `!ozbiljna <nick>` - Random procenat ozbiljnosti
-- `!neozbiljan <nick>` / `!neozbiljna <nick>` - Random procenat neozbiljnosti
-- `!crnac <nick>` - Random procenat
-- `!veverica <nick>` - Random procenat
-- `!govedo <nick>` - Random procenat
-- `!dupe <nick>` ili `!guza <nick>` - Random "dupe" poruka
-- `!komande` - Lista svih dostupnih komandi
-- `!iamon` - Lista kanala na kojima je bot (zahteva +n flag)
-- `!ignore <nick>` - Dodaj korisnika na ignore listu (zahteva +m flag)
+- `!prc <nick>` - Random "prc" message
+- `!drka <nick>` - Random "drka" message
+- `!izmeri <nick>` - Random penis size (10-25 cm)
+- `!sise <nick>` - Random breast size
+- `!sexy <nick>` - Random sexy percentage (0-100%)
+- `!gay <nick>` - Random gay percentage (0-100%)
+- `!hacker <nick>` - Random hacker percentage (0-100%)
+- `!laze <nick>` - Random lying percentage (0-100%)
+- `!istina <nick>` - Random truth percentage (0-100%)
+- `!ozbiljan <nick>` / `!ozbiljna <nick>` - Random seriousness percentage
+- `!neozbiljan <nick>` / `!neozbiljna <nick>` - Random non-seriousness percentage
+- `!crnac <nick>` - Random percentage
+- `!veverica <nick>` - Random percentage
+- `!govedo <nick>` - Random percentage
+- `!dupe <nick>` or `!guza <nick>` - Random "dupe" message
+- `!komande` - List all available commands
+- `!iamon` - List channels bot is on (requires +n flag)
+- `!ignore <nick>` - Add user to ignore list (requires +m flag)
 
-**Interaktivni odgovori:**
+**Interactive Responses:**
 
-Skripta automatski reaguje na određene fraze u kanalu:
+Script automatically responds to certain phrases in the channel:
 
-- Reaguje na frazu "kako je" sa odgovorom
-- Reaguje na određene vulgarne fraze sa odgovorima
-- Reaguje na frazu "nabijem" sa odgovorom
+- Responds to phrase "kako je" with answer
+- Responds to certain vulgar phrases with answers
+- Responds to phrase "nabijem" with answer
 
-**Funkcionalnosti:**
+**Features:**
 
-- Flood protection sa automatskim banovanjem
-- Lista izuzetih nickova (`izuzmi`) sa posebnim odgovorima
-- Interaktivni odgovori na određene fraze u kanalu (pubm bindovi)
-- Konfigurabilni flood parametri (floodTime, floodmsg, banDuration)
-- Case-insensitive matching za komande
-- Posebni odgovori za izuzete nickove
+- Flood protection with automatic banning
+- List of excluded nicks (`izuzmi`) with special responses
+- Interactive responses to certain phrases in channel (pubm binds)
+- Configurable flood parameters (floodTime, floodmsg, banDuration)
+- Case-insensitive command matching
+- Special responses for excluded nicks
 
-**Konfiguracija:**
+**Configuration:**
 
-- `set izuzmi [list "munZe" "\[85\]"]` - Lista nickova sa posebnim odgovorima
-- `set floodTime 5` - Vremenski prozor za flood detekciju (sekunde)
-- `set floodmsg 3` - Maksimalan broj poruka u floodTime prozoru
-- `set banDuration 10` - Trajanje bana za flood (minuti)
+- `set izuzmi [list "munZe" "\[85\]"]` - List of nicks with special responses
+- `set floodTime 5` - Time window for flood detection (seconds)
+- `set floodmsg 3` - Maximum messages in floodTime window
+- `set banDuration 10` - Ban duration for flood (minutes)
 
 ---
 
 ## 📰 rss-synd.tcl
 
-**Verzija:** 0.5.2  
-**Autor:** Andrew Scott, HM2K, modifikovao Velimir Majstorov (munZe)  
-**Opis:** Asinhroni RSS i Atom feed reader sa podrškom za više feedova, gzip kompresiju, automatsko slanje na kanale, i custom triggere.
+**Version:** 0.5.2  
+**Author:** Andrew Scott, HM2K, modified by Velimir Majstorov (munZe)  
+**Description:** Asynchronous RSS and Atom feed reader with support for multiple feeds, gzip compression, automatic sending to channels, and custom triggers.
 
-**Komande:**
+**Commands:**
 
-- `!vesti` ili `!rss vesti` - Prikaži najnovije vesti (do 10 stavki)
-- `!rss` - Lista svih dostupnih feedova
+- `!vesti` or `!rss vesti` - Show latest news (up to 10 items)
+- `!rss` - List all available feeds
 
-**Funkcionalnosti:**
+**Features:**
 
-- HTTPS/TLS podrška
-- Gzip dekompresija (zahteva Trf paket - vidi sekciju Zavisnosti)
-- Automatsko ažuriranje na konfigurisanim intervalima
-- Debug logging na #services kanal
-- Custom output formatiranje
-- Baza podataka za praćenje novih stavki
+- HTTPS/TLS support
+- Gzip decompression (requires Trf package - see Dependencies section)
+- Automatic updates at configured intervals
+- Debug logging to #services channel
+- Custom output formatting
+- Database for tracking new items
 
-**Konfiguracija:**
+**Configuration:**
 
-- Feedovi se konfigurišu direktno u skripti (rss() array)
-- Baza podataka: `feeds/` (kreira se automatski)
-- Debug logging: kontrolisano preko "debug" settinga
+- Feeds are configured directly in script (rss() array)
+- Database: `feeds/` (created automatically)
+- Debug logging: controlled via "debug" setting
 
 ---
 
 ## 👋 massslap.tcl
 
-**Verzija:** 1.0.0  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Komanda za slanje masovnih slap poruka svim korisnicima na kanalu. Podržava ACTION (/me) i PRIVMSG format.
+**Version:** 1.0.0  
+**Author:** Velimir Majstorov (munZe)  
+**Description:** Command for sending mass slap messages to all users on channel. Supports ACTION (/me) and PRIVMSG format.
 
-**Komande:**
+**Commands:**
 
-- `.call [opciona poruka]` - Pošalji mass slap svim korisnicima na kanalu
+- `.call [optional message]` - Send mass slap to all users on channel
 
-**Funkcionalnosti:**
+**Features:**
 
-- Dual autorizacija: autorizovani korisnici ili operatori/halfops
-- Konfigurabilni format poruke (ACTION/PRIVMSG)
-- Automatsko deljenje dugih poruka
-- Rate limiting za sprečavanje floodovanja
+- Dual authorization: authorized users or operators/halfops
+- Configurable message format (ACTION/PRIVMSG)
+- Automatic splitting of long messages
+- Rate limiting to prevent flooding
 
-**Konfiguracija:**
+**Configuration:**
 
-- `set authorized_users` - Lista autorizovanih korisnika
-- `set use_action 1` - Koristi ACTION format (1) ili PRIVMSG (0)
+- `set authorized_users` - List of authorized users
+- `set use_action 1` - Use ACTION format (1) or PRIVMSG (0)
 
 ---
 
 ## 🔄 rehash.tcl
 
-**Verzija:** 1.0.0  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Omogućava autorizovanim korisnicima da rehashuju bot konfiguraciju preko IRC komande.
+**Version:** 1.0.0  
+**Author:** Velimir Majstorov (munZe)  
+**Description:** Allows authorized users to rehash bot configuration via IRC command.
 
-**Komande:**
+**Commands:**
 
-- `!rehash` - Rehashuj bot konfiguraciju
+- `!rehash` - Rehash bot configuration
 
-**Funkcionalnosti:**
+**Features:**
 
-- Autorizacija preko liste korisnika
+- Authorization via user list
 - Case-insensitive matching
-- Provera i handle-a i nick-a
+- Checks both handle and nick
 
-**Konfiguracija:**
+**Configuration:**
 
-- `set authorized_users` - Lista autorizovanih korisnika
+- `set authorized_users` - List of authorized users
 
 ---
 
 ## 📨 privmsg_forward.tcl
 
-**Verzija:** 1.0.0  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Prosleđuje sve privatne poruke koje bot primi na konfigurisani kanal. Korisno za monitoring i logovanje.
+**Version:** 1.0.0  
+**Author:** Velimir Majstorov (munZe)  
+**Description:** Forwards all private messages received by bot to configured channel. Useful for monitoring and logging.
 
-**Funkcionalnosti:**
+**Features:**
 
-- Automatsko prosleđivanje svih PRIVMSG poruka
-- Prikaz handle-a kada je dostupan
-- Validacija kanala pre slanja
+- Automatic forwarding of all PRIVMSG messages
+- Display handle when available
+- Channel validation before sending
 
-**Konfiguracija:**
+**Configuration:**
 
-- `set privmsg_channel "#services"` - Destinacioni kanal
+- `set privmsg_channel "#services"` - Destination channel
 
 ---
 
 ## 📚 nextcloud_ebooks.tcl
 
-**Verzija:** 1.0.0  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Skripta za pretragu i deljenje e-knjiga iz Nextcloud servera. Omogućava korisnicima da pretražuju biblioteku e-knjiga i automatski kreira deljene linkove za pronađene knjige.
+**Version:** 1.0.0  
+**Author:** Velimir Majstorov (munZe)  
+**Description:** Script for searching and sharing e-books from Nextcloud server. Allows users to search the e-book library and automatically creates share links for found books.
 
-**Komande:**
+**Commands:**
 
-- `!ebook <naziv knjige>` ili `!knjiga <naziv knjige>` - Pretraži biblioteku e-knjiga i kreira deljeni link
+- `!ebook <book name>` or `!knjiga <book name>` - Search e-book library and create share link
 
-**Funkcionalnosti:**
+**Features:**
 
-- Pretraga e-knjiga u Nextcloud folderu preko WebDAV API-ja
-- Automatsko kreiranje deljenih linkova za pronađene knjige
-- Podrška za UTF-8 encoding (srpska slova)
-- HTTPS/TLS podrška za sigurnu komunikaciju
-- Base64 autentifikacija sa Nextcloud App Password
-- URL encoding/dekodovanje za pravilno rukovanje nazivima fajlova
-- Automatsko pronalaženje postojećih deljenih linkova
-- Prikaz više rezultata ako postoji više knjiga sa istim terminom
+- E-book search in Nextcloud folder via WebDAV API
+- Automatic creation of share links for found books
+- UTF-8 encoding support (Serbian characters)
+- HTTPS/TLS support for secure communication
+- Base64 authentication with Nextcloud App Password
+- URL encoding/decoding for proper file name handling
+- Automatic finding of existing share links
+- Display multiple results if multiple books match the term
 
-**Konfiguracija:**
+**Configuration:**
 
-- `set nextcloud_url "https://cloud.dbase.in.rs"` - URL vašeg Nextcloud servera
-- `set nextcloud_username "<vas-username>"` - Vaš Nextcloud username
-- `set nextcloud_app_password "<vas-app-password>"` - App password (kreirati u Nextcloud Settings > Security > Devices & sessions)
+- `set nextcloud_url "https://cloud.dbase.in.rs"` - Your Nextcloud server URL
+- `set nextcloud_username "<your-username>"` - Your Nextcloud username
+- `set nextcloud_app_password "<your-app-password>"` - App password (create in Nextcloud Settings > Security > Devices & sessions)
 
-**Napomena:** Zahteva base64 TCL paket za autentifikaciju. Skripta automatski proverava dostupnost paketa i prijavljuje greške ako nedostaju.
+**Note:** Requires base64 TCL package for authentication. Script automatically checks package availability and reports errors if missing.
 
 ---
 
-### ⚠️ Zastarele Skripte
+## 💰 pi_price.tcl
 
-⚠️ **NAPOMENA:** Sledeće skripte su zastarele i trenutno ne rade. Mogu biti ispravljene u budućnosti.
+**Version:** 3.5.0  
+**Author:** Velimir Majstorov (munZe)  
+**Description:** Cryptocurrency price monitor from CoinMarketCap API. Automatically fetches and caches prices of all cryptocurrencies, updates every 2 hours. Supports search and price display for any token.
+
+**Commands:**
+
+- `!pi` - Show Pi Network price with invite link
+- `!cprice TOKEN` - Show price for any cryptocurrency token (e.g., `!cprice BTC`, `!cprice ETH`)
+- `!ctokens [query]` - List available tokens (without argument shows first 50, with argument searches by name or symbol)
+
+**Features:**
+
+- Automatic price fetching from CoinMarketCap Pro API
+- Data caching to JSON file for fast access
+- Automatic updates every 2 hours
+- Support for all cryptocurrencies available on CoinMarketCap (up to 5000 tokens)
+- Special support for Pi Network with automatic display on configured channels
+- Token search by symbol or name
+- Price formatting with 24h changes (green/red color)
+- Automatic sending of Pi Network price to configured channels on each update
+
+**Configuration:**
+
+- `set pi_channels [list "#Pi"]` - List of channels for automatic Pi price sending
+- `set pi_api_key "<your-API-key>"` - CoinMarketCap Pro API key (get at [coinmarketcap.com/api](https://coinmarketcap.com/api/))
+- `set pi_api_url "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"` - API endpoint
+- `set pi_invite_link "https://minepi.com/Majstorov"` - Your Pi Network invite link
+- `set pi_check_interval 7200` - Update interval in seconds (default: 7200 = 2 hours)
+- `set pi_db_file "scripts/crypto_prices.json"` - Path to JSON database file
+- `set pi_network_id "35697"` - Pi Network ID on CoinMarketCap
+
+**Notes:**
+
+- Requires `json` TCL package for parsing JSON responses
+- Requires `curl` command for HTTP requests
+- CoinMarketCap Pro API requires API key (free plan allows 333 requests per day)
+- JSON database is automatically created and updated
+- If JSON file is newer than 2 hours on startup, initial update is skipped
+
+---
+
+### ⚠️ Deprecated Scripts
+
+⚠️ **NOTE:** The following scripts are deprecated and currently not working. They may be fixed in the future.
 
 ---
 
 ## 🎾 tenis.tcl
 
-**Status:** ⚠️ **ZASTARELO** - Ne radi trenutno  
-**Verzija:** 0.1337  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Skripta za dohvatanje ATP tenis rangiranja sa atpworldtour.com. Prikazuje top 3 igrača sa detaljnim informacijama.
+**Status:** ⚠️ **DEPRECATED** - Not working currently  
+**Version:** 0.1337  
+**Author:** Velimir Majstorov (munZe)  
+**Description:** Script for fetching ATP tennis rankings from atpworldtour.com. Displays top 3 players with detailed information.
 
-**Komande:**
+**Commands:**
 
-- `!tenistop3` - Prikaži top 3 tenisera
+- `!tenistop3` - Show top 3 tennis players
 
-**Funkcionalnosti:**
+**Features:**
 
-- Parsiranje HTML sajta
-- Formatiranje i prikaz rangiranja
-- HTTP podrška
+- HTML site parsing
+- Ranking formatting and display
+- HTTP support
 
-**Razlog zastarelosti:** Verovatno promene na ATP sajtu ili HTTP strukture. Plan: Ispravka parsiranja i ažuriranje za novu strukturu sajta.
+**Reason for deprecation:** Likely changes on ATP website or HTTP structure. Plan: Fix parsing and update for new site structure.
 
 ---
 
 ## 🌤️ vremenska-prognoza.tcl
 
-**Status:** ⚠️ **ZASTARELO** - Ne radi trenutno  
-**Verzija:** 1.0.0  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Skripta za dohvatanje vremenske prognoze za gradove u Srbiji sa sajta blic.rs. Prikazuje trenutne vremenske uslove sa detaljnim informacijama.
+**Status:** ⚠️ **DEPRECATED** - Not working currently  
+**Version:** 1.0.0  
+**Author:** Velimir Majstorov (munZe)  
+**Description:** Script for fetching weather forecast for cities in Serbia from blic.rs. Displays current weather conditions with detailed information.
 
-**Komande:**
+**Commands:**
 
-- `!vreme <grad>` - Prikaži vremensku prognozu za odabrani grad
+- `!vreme <city>` - Show weather forecast for selected city
 
-**Dostupni gradovi:** Beograd, Pristina, Crni-Vrh, Kikinda, Negotin, Sjenica, Valjevo, Krusevac, Pancevo, Kragujevac, Novi-Sad, Kopaonik, Dimitrovgrad, Kraljevo, Palic, Smederevo, Zrenjanin, Vrsac, Cacak, Subotica, Nis, Vranje, Loznica, Leskova, Ruma, Sremska-Mitrovica, Zlatibor, Knjazevac, Uzice
+**Available cities:** Beograd, Pristina, Crni-Vrh, Kikinda, Negotin, Sjenica, Valjevo, Krusevac, Pancevo, Kragujevac, Novi-Sad, Kopaonik, Dimitrovgrad, Kraljevo, Palic, Smederevo, Zrenjanin, Vrsac, Cacak, Subotica, Nis, Vranje, Loznica, Leskova, Ruma, Sremska-Mitrovica, Zlatibor, Knjazevac, Uzice
 
-**Funkcionalnosti:**
+**Features:**
 
-- Parsiranje HTML sajta
-- Prikaz trenutnih vremenskih uslova (temperatura, pritisak, vetar, vlažnost, vidljivost, UV index)
-- UTF-8 encoding podrška
+- HTML site parsing
+- Display of current weather conditions (temperature, pressure, wind, humidity, visibility, UV index)
+- UTF-8 encoding support
 
-**Razlog zastarelosti:** Verovatno promene na blic.rs sajtu ili HTTP strukture. Plan: Rekreacija skripte za dohvatanje vremenske prognoze.
+**Reason for deprecation:** Likely changes on blic.rs website or HTTP structure. Plan: Recreate script for fetching weather forecast.
 
 ---
 
 ## 🌧️ vrijeme.tcl
 
-**Status:** ⚠️ **ZASTARELO** - Ne radi trenutno  
-**Verzija:** 1.0.0  
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Skripta za dohvatanje vremenske prognoze za gradove u Bosni i Hercegovini sa sajta prognozavremena.info. Prikazuje trenutne vremenske uslove sa detaljnim informacijama.
+**Status:** ⚠️ **DEPRECATED** - Not working currently  
+**Version:** 1.0.0  
+**Author:** Velimir Majstorov (munZe)  
+**Description:** Script for fetching weather forecast for cities in Bosnia and Herzegovina from prognozavremena.info. Displays current weather conditions with detailed information.
 
-**Komande:**
+**Commands:**
 
-- `!vrijeme <grad>` - Prikaži vremensku prognozu za odabrani grad
+- `!vrijeme <city>` - Show weather forecast for selected city
 
-**Dostupni gradovi:** Banja Luka, Bihac, Bijeljina, Brcko, Jahorina, Mostar, Neum, Sarajevo, Trebinje, Tuzla, Visegrad
+**Available cities:** Banja Luka, Bihac, Bijeljina, Brcko, Jahorina, Mostar, Neum, Sarajevo, Trebinje, Tuzla, Visegrad
 
-**Funkcionalnosti:**
+**Features:**
 
-- Parsiranje HTML sajta
-- Prikaz trenutnih vremenskih uslova (temperatura, pritisak, brzina vetra, vlažnost, vidljivost, subjektivno, naleti vetra, izlazak/zalazak sunca)
-- UTF-8 encoding podrška
+- HTML site parsing
+- Display of current weather conditions (temperature, pressure, wind speed, humidity, visibility, subjective, wind gusts, sunrise/sunset)
+- UTF-8 encoding support
 
-**Razlog zastarelosti:** Verovatno promene na prognozavremena.info sajtu ili HTTP strukture. Plan: Rekreacija skripte za dohvatanje vremenske prognoze.
+**Reason for deprecation:** Likely changes on prognozavremena.info website or HTTP structure. Plan: Recreate script for fetching weather forecast.
 
 ---
 
 ## 🛡️ PIKbl.tcl
 
-**Status:** ⚠️ **ZASTARELO** - Ne radi trenutno  
-**Verzija:** 1.337
-**Autor:** Velimir Majstorov (munZe)  
-**Opis:** Skripta za automatsko proveravanje IP adresa korisnika koji se povezuju na IRC server. Proverava IP adrese preko pricaonica.krstarica.com servisa i automatski banuje problematične IP adrese.
+**Status:** ⚠️ **DEPRECATED** - Not working currently  
+**Version:** 1.337  
+**Author:** Velimir Majstorov (munZe)  
+**Description:** Script for automatic checking of IP addresses of users connecting to IRC server. Checks IP addresses via pricaonica.krstarica.com service and automatically bans problematic IP addresses.
 
-**Funkcionalnosti:**
+**Features:**
 
-- Automatsko hvatanje novih konekcija
-- Provera IP adresa preko eksternog servisa
-- Automatsko banovanje problematičnih IP adresa (GLINE/ZLINE)
-- Obaveštenja na konfigurisanom kanalu
-- Oper up na serveru za izvršavanje banova
+- Automatic catching of new connections
+- IP address checking via external service
+- Automatic banning of problematic IP addresses (GLINE/ZLINE)
+- Notifications on configured channel
+- Oper up on server for executing bans
 
-**Konfiguracija:**
+**Configuration:**
 
-- `set BanAkoJeVeceOd` - Threshold za banovanje (default: 60.6)
-- `set KanalZaObavestenja` - Kanal za obaveštenja (default: #services)
-- `set bantype` - Tip bana (GLINE/ZLINE)
-- `set bantime` - Trajanje bana (npr. "12h")
-- `set opernick` / `set operpass` - Oper credentials za banovanje
+- `set BanAkoJeVeceOd` - Threshold for banning (default: 60.6)
+- `set KanalZaObavestenja` - Channel for notifications (default: #services)
+- `set bantype` - Ban type (GLINE/ZLINE)
+- `set bantime` - Ban duration (e.g., "12h")
+- `set opernick` / `set operpass` - Oper credentials for banning
 
-**Razlog zastarelosti:** Verovatno promene na pricaonica.krstarica.com servisu ili HTTP strukture. Plan: Ažuriranje skripte za novu strukturu servisa ili pronalaženje alternativnog servisa za proveru IP adresa.
+**Reason for deprecation:** Likely changes on pricaonica.krstarica.com service or HTTP structure. Plan: Update script for new service structure or find alternative service for IP address checking.
 
 ---
 
-## 📦 Zavisnosti
+## 📦 Dependencies
 
 ### 📦 trf2.1.5.tar.gz
 
-**Opis:** Trf (Trf Extension) je TCL ekstenzija koja je potrebna za `rss-synd.tcl` skriptu. Originalna Trf ekstenzija je zastarela i ne radi sa novijim verzijama TCL-a (TCL 8.6+).
+**Description:** Trf (Trf Extension) is a TCL extension required for the `rss-synd.tcl` script. The original Trf extension is deprecated and does not work with newer versions of TCL (TCL 8.6+).
 
-**Status:** Modifikovana verzija uključena u repozitorijum je prilagođena da radi sa TCL 8.6. Modifikacije su urađene od strane autora (munZe) kako bi skripta `rss-synd.tcl` mogla da koristi gzip dekompresiju za RSS feedove koji su kompresovani.
+**Status:** Modified version included in repository is adapted to work with TCL 8.6. Modifications were made by the author (munZe) so that the `rss-synd.tcl` script can use gzip decompression for RSS feeds that are compressed.
 
-**Instalacija:**
+**Installation:**
 
-1. Raspakujte `trf2.1.5.tar.gz` arhivu
-2. Kompajlirajte i instalirajte Trf ekstenziju prema uputstvima u paketu
-3. Uverite se da je Trf ekstenzija dostupna u TCL okruženju pre pokretanja `rss-synd.tcl`
+1. Extract `trf2.1.5.tar.gz` archive
+2. Compile and install Trf extension according to instructions in package
+3. Ensure Trf extension is available in TCL environment before running `rss-synd.tcl`
 
-**Napomena:** Bez Trf ekstenzije, `rss-synd.tcl` će raditi, ali neće moći da dekompresuje gzip kompresovane RSS feedove.
+**Note:** Without Trf extension, `rss-synd.tcl` will work, but will not be able to decompress gzip compressed RSS feeds.
 
 ---
 
-## 📝 Napomene
+## 📝 Notes
 
-- Većina skripti je razvijena za Eggdrop 1.10.0+
-- TCL skripte zahtevaju standardne TCL pakete (http, tls)
-- `rss-synd.tcl` zahteva Trf ekstenziju za gzip dekompresiju (vidi sekciju Zavisnosti)
-- Sve skripte su testirane i optimizovane za TCL 8.6
+- Most scripts are developed for Eggdrop 1.10.0+
+- TCL scripts require standard TCL packages (http, tls)
+- `rss-synd.tcl` requires Trf extension for gzip decompression (see Dependencies section)
+- All scripts are tested and optimized for TCL 8.6
 
 ---
 
@@ -438,13 +483,13 @@ If you discover a security vulnerability, please **DO NOT** open a public issue.
 
 ---
 
-## 📄 Licenca
+## 📄 License
 
-Većina skripti je pod MIT licencom. Proverite [LICENSE](LICENSE) fajl za detalje. Proverite header svake skripte za specifične licence.
+Most scripts are licensed under MIT License. Check [LICENSE](LICENSE) file for details. Check header of each script for specific licenses.
 
 ---
 
-## 👤 Autor
+## 👤 Author
 
 **Velimir Majstorov** (AKA munZe)  
 🌐 DBase Network - irc.dbase.in.rs  
@@ -452,6 +497,7 @@ Većina skripti je pod MIT licencom. Proverite [LICENSE](LICENSE) fajl za detalj
 
 ---
 
-## Poslednje ažuriranje
+## Last Update
 
 2025
+
